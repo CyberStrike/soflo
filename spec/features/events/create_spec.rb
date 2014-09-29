@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-context 'When creating an Event' do
+context 'When creating an Event', :type => :feature do
 
   let!(:event){create(:event)}
 
@@ -13,6 +13,8 @@ context 'When creating an Event' do
     expect(page).to have_content 'New event'
     fill_in 'Title', with: event.title
     fill_in 'Description', with: event.description
+    select_date_and_time(DateTime.now, from: 'event_start')
+    select_date_and_time(DateTime.now + 2, from: 'event_finish')
     click_on 'Save'
     expect(page).to have_content event.description
   end

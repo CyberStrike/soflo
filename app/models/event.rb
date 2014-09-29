@@ -4,6 +4,8 @@ class Event < ActiveRecord::Base
   validates :description, presence: true, length:{minimum: 2}
   validates :start, presence: true
   validate :valid_start
+  validates :finish, presence: true
+  validate :valid_finish
 
 
   def time
@@ -19,11 +21,11 @@ class Event < ActiveRecord::Base
   def valid_start
 
     case
-      when self.start.class != Time
+      when start.class != Time
         false
-      when self.start.empty?
+      when start.empty?
         false
-      when self.start < Time.now
+      when start < Time.now
         false
       else
         true
@@ -31,4 +33,16 @@ class Event < ActiveRecord::Base
 
   end
 
+  def valid_finish
+
+    case
+      when finish.class != DateTime
+        false
+      when finish < self.start
+        false
+      else
+        true
+    end
+
+  end
 end
