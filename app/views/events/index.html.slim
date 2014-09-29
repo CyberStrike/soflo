@@ -8,6 +8,7 @@ table
       th End
       th Location
       th Ticketurl
+      th Description
       th
       th
       th
@@ -20,6 +21,7 @@ table
         td = event.end
         td = event.location
         td = event.ticketurl
+        td = event.description
         td = link_to 'Show', event
         td = link_to 'Edit', edit_event_path(event)
         td = link_to 'Destroy', event, data: {:confirm => 'Are you sure?'}, :method => :delete

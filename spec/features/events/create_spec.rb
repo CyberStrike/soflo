@@ -24,7 +24,10 @@ context 'When creating an Event' do
   end
 
   it 'it displays error without description of more than 2 characters' do
-    skip
+    click_on 'New event'
+    fill_in 'Desc', with: 'a'
+    click_on 'Save'
+    expect(page).to have_content 'is too short (minimum is 2 characters)'
   end
 
   it 'belongs to user' do
@@ -33,5 +36,25 @@ context 'When creating an Event' do
   it 'can set a future date' do
     skip
   end
+
+
+
+
+  # it 'displays an error with no content' do
+  #   click_on 'New Todo'
+  #   fill_in 'Content', with: ''
+  #   click_on 'Save'
+  #   expect(page).to have_content 'Content can\'t be blank'
+  # end
+
+  # it 'displays an error when the Todo List has no title' do
+  #   create_todo_list title:''
+  #   expect(page).to have_content 'error'
+  # end
+  #
+  # it 'displays an error when the Todo List has a title less than two character' do
+  #   create_todo_list title: 'a'
+  #   expect(page).to have_content 'error'
+  # end
 
 end
