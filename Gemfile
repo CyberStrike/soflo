@@ -11,8 +11,8 @@ group :development, :test do
   gem 'sqlite3' # SQLite3 DB
   gem 'rspec-rails' # Test Helper
   gem 'capybara' # Feature Testing
-  # gem 'factory_girl_rails' #
-  # gem 'faker' # Random Fake Info
+  gem 'factory_girl_rails' #
+  gem 'ffaker' # Random Fake Info
   # gem 'shoulda-matchers' # Model Testing Help for Rspec
   # gem 'selenium-webdriver'
 end

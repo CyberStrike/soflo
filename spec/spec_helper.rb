@@ -22,6 +22,13 @@ RSpec.configure do |config|
 
 begin
 
+  # Factory Girl
+  config.include FactoryGirl::Syntax::Methods
+
+  config.before(:suite) do
+    FactoryGirl.lint
+  end
+
   # Turn off warnings
   config.warnings = false
 
