@@ -1,5 +1,32 @@
 h1 Listing events
 
+h2.text-center#month
+  = @date.strftime("%B %Y")
+
+h2
+  span = link_to '<<<', date: @date.prev_month
+  span = link_to 'Today', events_path
+  span =link_to '>>>', date: @date.next_month
+
+= calendar @date do |date|
+  = date.day
+  - if @events_by_date[date]
+    - @events_by_date[date].each do |event|
+      p = link_to event.title, event
+
+
+
+
+h2 Today
+hr
+
+
+- if @events_by_date[DateTime.current.to_date]
+  - @events_by_date[DateTime.current.to_date].each do |event|
+    p = event.title
+    p = event.starttime
+
+
 table
   thead
     tr
