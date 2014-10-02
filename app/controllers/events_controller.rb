@@ -7,6 +7,7 @@ class EventsController < ApplicationController
     @events = Event.all
     @events_by_date = @events.group_by &:startdate
     @date = params[:date] ? Date.parse(params[:date]): Date.current
+    @events_this_week = Event.this_week.order(:start).group_by(&:startdate)
   end
 
   # GET /events/1

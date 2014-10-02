@@ -5,6 +5,8 @@ class Event < ActiveRecord::Base
   validates :start, presence: true
   validates :finish, presence: true
 
+  scope :this_week, -> { where(:start => Date.current.beginning_of_week..Date.current.end_of_week ) }
+
 
   def startdate
     start.to_date
