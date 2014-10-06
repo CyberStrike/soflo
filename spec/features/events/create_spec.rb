@@ -18,7 +18,6 @@ context 'When creating an Event', :type => :feature do
     click_on 'Save'
     expect(page).to have_content event.description
   end
-
   it 'it displays error without title of more than two characters' do
     fill_in 'Title', with: 'a'
     click_on 'Save'

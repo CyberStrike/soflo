@@ -1,13 +1,17 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_date, only: [:index, :calendar]
 
   # GET /events
   # GET /events.json
   def index
+    # @events = Event.all
+    @events_by_week = Event.where(:start => @date.beginning_of_week..@date.end_of_week ).order(:start).group_by(&:startdate) || Event.this_week.order(:start).group_by(&:startdate)
+  end
+
+  def calendar
     @events = Event.all
     @events_by_date = @events.group_by &:startdate
-    @date = params[:date] ? Date.parse(params[:date]): Date.current
-    @events_this_week = Event.this_week.order(:start).group_by(&:startdate)
   end
 
   # GET /events/1
@@ -68,6 +72,10 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def set_date
+      @date = params[:date] ? Date.parse(params[:date]): Date.current
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

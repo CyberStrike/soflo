@@ -1,60 +1,63 @@
-h1 Listing events
+/- raise 'hell'
+= link_to 'New Event', new_event_path, class: 'btn btn-success btn-block btn-lg'
 
 .row
   .col-lg-8.col-lg-push-2
     h2.text-center#month
       = @date.strftime("%B %Y")
+    h4.text-center
+      ul.pagination
+        li = link_to date: @date.prev_week do
+          span.glyphicon.glyphicon-chevron-left
+          = @date.prev_week.beginning_of_week.strftime('%b %d') +  ' - ' +  @date.prev_week.end_of_week.strftime('%d')
+        li = link_to 'Today', events_path
+        li = link_to date: @date.next_week do
+          = @date.next_week.beginning_of_week.strftime('%b %d') +  ' - ' +  @date.next_week.end_of_week.strftime('%d')
+          span.glyphicon.glyphicon-chevron-right
+    - unless @events_by_week.empty?
+      - @events_by_week.each do |day|
+        - case day[0]
+          - when Date.current
+            h3.text-center = "Today (#{day[0].strftime('%a, %b %d, %Y')})"
+          - when Date.current.tomorrow
+            h3.text-center = "Tomorrow (#{day[0].strftime('%a, %b %d, %Y')})"
+          - when Date.current.yesterday
+            h3.text-center = "Yesterday (#{day[0].strftime('%a, %b %d, %Y')})"
+          - else
+            h3.text-center = day[0].strftime('%a, %b %d, %Y')
+        hr
+        - day[1].each do |event|
+          = link_to event do
+            p.text-center
+              = event.starttime.to_s + " - " + event.title.to_s
+    - else
+      h3.text-muted No Events this week. :(
+      = link_to 'Add one', new_event_path, class: 'btn btn-success'
+/table
+/  thead
+/    tr
+/      th Title
+/      th Start
+/      th finish
+/      th Location
+/      th Ticketurl
+/      th Description
+/      th
+/      th
+/      th
+/
+/  tbody
+/    - @events.each do |event|
+/      tr
+/        td = event.title
+/        td = event.start
+/        td = event.finish
+/        td = event.location
+/        td = event.ticketurl
+/        td = event.description
+/        td = link_to 'Show', event
+/        td = link_to 'Edit', edit_event_path(event)
+/        td = link_to 'Destroy', event, data: {:confirm => 'Are you sure?'}, :method => :delete
+/
+/br
 
-    h2.text-center
-      span = link_to '<<    ', date: @date.prev_month
-      span = link_to 'Today', events_path
-      span =link_to '   >>', date: @date.next_month
-
-    = calendar @date do |date|
-      = date.day
-      - if @events_by_date[date]
-        - @events_by_date[date].each do |event|
-          p = link_to event.title, event
-
-
-h2 Today
-hr
-
-
-- if @events_this_week
-  - @events_this_week.each do |day|
-    h3 = day[0].to_formatted_s(:long)
-    - day[1].each do |event|
-      p = event.title
-      p = event.starttime
-
-
-table
-  thead
-    tr
-      th Title
-      th Start
-      th finish
-      th Location
-      th Ticketurl
-      th Description
-      th
-      th
-      th
-
-  tbody
-    - @events.each do |event|
-      tr
-        td = event.title
-        td = event.start
-        td = event.finish
-        td = event.location
-        td = event.ticketurl
-        td = event.description
-        td = link_to 'Show', event
-        td = link_to 'Edit', edit_event_path(event)
-        td = link_to 'Destroy', event, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Event', new_event_path

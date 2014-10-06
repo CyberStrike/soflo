@@ -1,0 +1,51 @@
+.row
+  .col-lg-8.col-lg-push-2
+    h2.text-center#month
+      = @date.strftime("%B %Y")
+
+    h4.text-center
+      ul.pagination
+        li = link_to date: @date.prev_month do
+          span.glyphicon.glyphicon-chevron-left
+          = @date.prev_month.strftime('%B')
+        li = link_to 'Today', events_path
+        li = link_to date: @date.next_month do
+          = @date.next_month.strftime('%B')
+          span.glyphicon.glyphicon-chevron-right
+    .calendarheight
+      = calendar @date do |date|
+        = date.day
+        - if @events_by_date[date]
+          - @events_by_date[date].each do |event|
+            p = link_to event.title, event
+
+
+/table
+/  thead
+/    tr
+/      th Title
+/      th Start
+/      th finish
+/      th Location
+/      th Ticketurl
+/      th Description
+/      th
+/      th
+/      th
+/
+/  tbody
+/    - @events.each do |event|
+/      tr
+/        td = event.title
+/        td = event.start
+/        td = event.finish
+/        td = event.location
+/        td = event.ticketurl
+/        td = event.description
+/        td = link_to 'Show', event
+/        td = link_to 'Edit', edit_event_path(event)
+/        td = link_to 'Destroy', event, data: {:confirm => 'Are you sure?'}, :method => :delete
+/
+/br
+
+= link_to 'New Event', new_event_path
