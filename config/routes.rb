@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'events#index'
   resources :events
   get 'calendar', to: 'events#calendar'
 
