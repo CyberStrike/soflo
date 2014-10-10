@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
 
+
   validates :title,
             presence: true,
             length:{minimum: 2}
@@ -8,6 +9,7 @@ class Event < ActiveRecord::Base
             length:{minimum: 2}
   validates :start,
             presence: true
+  validate :start_time_not_in_past
   validates :finish,
             presence: true
 
@@ -18,7 +20,17 @@ class Event < ActiveRecord::Base
   end
 
   def starttime
-    start.strftime("%H:%M")
+    start.strftime('%H:%M')
+  end
+
+  private
+
+  def start_time_not_in_past
+    if start
+      if self.start < DateTime.now
+        errors.add :start, 'No Time Traveling Allowed'
+      end
+    end
   end
 
 end

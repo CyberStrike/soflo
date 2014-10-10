@@ -38,4 +38,31 @@ context 'When creating an Event', :type => :feature do
     skip
   end
 
+  it 'can not set a a past date' do
+    expect(page).to have_content 'New event'
+    fill_in 'Title', with: event.title
+    fill_in 'Description', with: event.description
+    select_date_and_time(DateTime.now - 10.days, from: 'event_start')
+    select_date_and_time(event.finish, from: 'event_finish')
+    click_on 'Save'
+    expect(page).to have_content 'No Time Traveling Allowed'
+  end
+
+
+  it 'it can create a repeating event' do
+    skip
+  end
+
+  it 'it can create a daily repeating event' do
+    skip
+  end
+
+  it 'it can create a weekly repeating event' do
+    skip
+  end
+
+  it 'it can create a monthly repeating event' do
+    skip
+  end
+
 end
