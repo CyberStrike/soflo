@@ -6,6 +6,8 @@ gem 'rails', '4.1.1'
 # Libraries
 ####################
 
+gem 'recurrence'
+
 
 group :development, :test do
   gem 'sqlite3' # SQLite3 DB
