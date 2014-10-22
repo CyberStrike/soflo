@@ -1,8 +1,15 @@
 .row
+  .btn-group.pull-right
+    = link_to root_path, class: 'btn btn-warning' do
+      span.glyphicon.glyphicon-list
+      |  Weeks
+    = link_to calendar_path, class: 'btn btn-info' do
+      span.glyphicon.glyphicon-calendar
+      |  Calendar
+.row
   .col-lg-8.col-lg-push-2
     h2.text-center#month
       = @date.strftime("%B %Y")
-
     h4.text-center
       ul.pagination
         li = link_to date: @date.prev_month do
