@@ -1,6 +1,6 @@
 html
   head
-    title Soflo
+    title SoFlo
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -15,15 +15,12 @@ html
             span.icon-bar
           = link_to 'SoFlo', root_path, class: 'navbar-brand'
         #menu.collapse.navbar-collapse
-          ul.nav.navbar-nav
-            li
-              = link_to 'Add Event', new_event_path
           ul.nav.navbar-nav.navbar-right
             li
-              a href="#"  Link
+              = link_to 'Add Event', new_event_path
             li.dropdown
               a.dropdown-toggle data-toggle="dropdown" href="#"
-                | Dropdown
+                | User
                 span.caret
               ul.dropdown-menu role="menu"
                 li
