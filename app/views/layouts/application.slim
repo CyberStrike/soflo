@@ -1,6 +1,6 @@
 html
   head
-    title SoFlo
+    title SoFlo Alpha
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -13,7 +13,7 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to 'SoFlo', root_path, class: 'navbar-brand'
+          = link_to 'SoFlo Alpha', root_path, class: 'navbar-brand'
         #menu.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
             li
@@ -32,5 +32,15 @@ html
                 li.divider
                 li
                   a href="#"  Separated link
+
+    .text-center
+      button.alert.alert-warning.alert-dismissible
+        span.close data-dismiss="alert"
+          span aria-hidden="true"
+            | &times;
+        .message.text-left
+          | Welcome to South Floridas Tech Board.
+          p We are currently in alpha testing so please pardon the mess.
+          a href="  "
     .container
       = yield
