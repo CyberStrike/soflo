@@ -1,0 +1,12 @@
+html
+  head
+    title Soflo
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    .container
+      .row
+        = link_to 'New Event', new_event_path, class: 'btn btn-success btn-lg pull-left'
+        = link_to 'Calender View', calendar_path, class: 'btn btn-info'
+      = yield
