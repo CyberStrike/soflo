@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
 
   def start_time_not_in_past
     if start
-      if self.start < DateTime.now
+      if self.start < DateTime.now - 1.hour
         errors.add :start, 'No Time Traveling Allowed'
       end
     end
