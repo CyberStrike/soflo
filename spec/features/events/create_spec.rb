@@ -5,19 +5,25 @@ context 'When creating an Event', :type => :feature do
   let!(:event){create(:event)}
 
   before :each do
-    visit '/events'
+      visit '/events'
     click_on 'New Event'
   end
 
-  it 'it saves successfully' do
+  def event_defaults
     expect(page).to have_content 'New event'
     fill_in 'Title', with: event.title
     fill_in 'Description', with: event.description
+  end
+
+
+  it 'it saves successfully' do
+    event_defaults
     select_date_and_time(event.start, from: 'event_start')
     select_date_and_time(event.finish, from: 'event_finish')
     click_on 'Save'
     expect(page).to have_content event.description
   end
+
   it 'it displays error without title of more than two characters' do
     fill_in 'Title', with: 'a'
     click_on 'Save'
@@ -35,7 +41,11 @@ context 'When creating an Event', :type => :feature do
   end
 
   it 'can set a future date' do
-    skip
+    event_defaults
+    select_date_and_time(event.start, from: 'event_start')
+    select_date_and_time(event.finish, from: 'event_finish')
+    click_on 'Save'
+    expect(page).to have_content event.start
   end
 
   it 'can not set a a past date' do
@@ -47,7 +57,6 @@ context 'When creating an Event', :type => :feature do
     click_on 'Save'
     expect(page).to have_content 'No Time Traveling Allowed'
   end
-
 
   it 'it can create a repeating event' do
     skip

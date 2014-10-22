@@ -8,7 +8,7 @@
         li = link_to date: @date.prev_month do
           span.glyphicon.glyphicon-chevron-left
           = @date.prev_month.strftime('%B')
-        li = link_to 'Today', events_path
+        li = link_to 'Today', date: Date.current
         li = link_to date: @date.next_month do
           = @date.next_month.strftime('%B')
           span.glyphicon.glyphicon-chevron-right

@@ -6,8 +6,8 @@ gem 'rails', '4.1.1'
 # Libraries
 ####################
 
-gem 'recurrence'
-
+# gem 'recurrence'
+gem 'thin' # Use Thin as Server
 
 group :development, :test do
   gem 'sqlite3' # SQLite3 DB
@@ -26,7 +26,7 @@ end
 
 group :production do
   gem 'pg' # Postgresql DB
-  gem 'rails_12factor'
+  gem 'rails_12factor' # Heroku asset handler
 end
 
 ## Views
