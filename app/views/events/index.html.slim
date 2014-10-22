@@ -29,34 +29,7 @@
           = link_to event do
             p.text-center
               = event.starttime.to_s + " - " + event.title.to_s
+
     - else
       h3.text-muted No Events this week. :(
       = link_to 'Add one', new_event_path, class: 'btn btn-success'
-/table
-/  thead
-/    tr
-/      th Title
-/      th Start
-/      th finish
-/      th Location
-/      th Ticketurl
-/      th Description
-/      th
-/      th
-/      th
-/
-/  tbody
-/    - @events.each do |event|
-/      tr
-/        td = event.title
-/        td = event.start
-/        td = event.finish
-/        td = event.location
-/        td = event.ticketurl
-/        td = event.description
-/        td = link_to 'Show', event
-/        td = link_to 'Edit', edit_event_path(event)
-/        td = link_to 'Destroy', event, data: {:confirm => 'Are you sure?'}, :method => :delete
-/
-/br
-
