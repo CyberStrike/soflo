@@ -7,6 +7,8 @@ gem 'rails', '4.1.1'
 ####################
 
 # gem 'recurrence'
+
+gem 'devise' # User Authentication
 gem 'thin' # Use Thin as Server
 
 group :development, :test do
