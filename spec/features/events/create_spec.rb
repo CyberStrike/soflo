@@ -5,7 +5,7 @@ context 'When creating an Event', :type => :feature do
   let!(:event){create(:event)}
 
   before :each do
-      visit '/events'
+    visit '/events'
     click_on 'New Event'
   end
 
