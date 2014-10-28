@@ -36,4 +36,15 @@ context 'When a user signs up', :type => :feature do
     expect(page).to have_content 'Password is too short (minimum is 8 characters)'
   end
 
+  it 'they must confirm password' do
+
+    badpass = Faker::Internet.password()[0..rand(7)]
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    fill_in 'Password confirmation', with: badpass
+    click_on 'Sign up'
+    expect(page).to have_content "Password confirmation doesn't match"
+  end
+
 end
