@@ -7,6 +7,7 @@ gem 'rails', '4.1.1'
 ####################
 
 # gem 'recurrence'
+gem 'devise' # User Authentication
 gem 'thin' # Use Thin as Server
 
 group :development, :test do
@@ -16,7 +17,7 @@ group :development, :test do
   gem 'factory_girl_rails' #
   gem 'ffaker' # Random Fake Info
   # gem 'shoulda-matchers' # Model Testing Help for Rspec
-  # gem 'selenium-webdriver'
+  gem 'selenium-webdriver'
 end
 
 group :development do

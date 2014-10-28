@@ -14,24 +14,19 @@ html
             span.icon-bar
             span.icon-bar
           = link_to 'SoFlo Alpha', root_path, class: 'navbar-brand'
+
         #menu.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
             li
               = link_to 'Add Event', new_event_path
-            li.dropdown
-              a.dropdown-toggle data-toggle="dropdown" href="#"
-                | User
-                span.caret
-              ul.dropdown-menu role="menu"
-                li
-                  a href="#"  Action
-                li
-                  a href="#"  Another action
-                li
-                  a href="#"  Something else here
-                li.divider
-                li
-                  a href="#"  Separated link
+            - if current_user
+              li
+                = link_to 'Log Out', destroy_user_session_path, method: :delete
+              li
+                = link_to current_user.email, edit_user_registration_path
+            - else
+              li
+                = link_to 'Register', new_user_registration_path
 
     .text-center
       .alert.alert-warning
@@ -42,6 +37,10 @@ html
           | Welcome to South Floridas Tech Board.
           | We are currently in alpha testing so please pardon the mess.
           a href="https://github.com/CyberStrike/soflo" - Team SoFlo
+
+    .notice = notice
+    .alert = alert
+
     .container
       = yield
 
