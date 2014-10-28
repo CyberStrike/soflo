@@ -5,6 +5,8 @@ context 'When a user signs up', :type => :feature do
 
   let!(:user){build(:user)}
 
+  badpass = Faker::Internet.password[0..rand(7)]
+
   before :each do
     visit '/'
     click_on 'Register'
@@ -26,9 +28,6 @@ context 'When a user signs up', :type => :feature do
   end
 
   it 'the password must have 8 characters' do
-
-    badpass = Faker::Internet.password()[0..rand(7)]
-
     fill_in 'Email', with: user.email
     fill_in 'Password', with: badpass
     fill_in 'Password confirmation', with: badpass
@@ -37,9 +36,6 @@ context 'When a user signs up', :type => :feature do
   end
 
   it 'they must confirm password' do
-
-    badpass = Faker::Internet.password()[0..rand(7)]
-
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     fill_in 'Password confirmation', with: badpass

@@ -1,5 +1,4 @@
 require 'rails_helper'
-Warden.test_mode!
 
 context 'When a user logs in', :type => :feature do
 
@@ -25,4 +24,10 @@ context 'When a user logs in', :type => :feature do
   it 'they do not see register' do
     expect(page).to_not have_link 'Register'
   end
+
+  it 'they can logout ' do
+    click_on 'Log Out'
+    expect(page).to have_content 'Signed out successfully.'
+  end
+
 end
