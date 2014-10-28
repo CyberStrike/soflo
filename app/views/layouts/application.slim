@@ -38,10 +38,10 @@ html
           | We are currently in alpha testing so please pardon the mess.
           a href="https://github.com/CyberStrike/soflo" - Team SoFlo
 
-    .notice = notice
-    .alert = alert
-
     .container
+      - unless flash.empty?
+        .notice = notice
+        .alert = alert
       = yield
 
       .site-footer
