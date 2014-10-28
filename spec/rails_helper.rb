@@ -21,6 +21,9 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
+  # # Include Warden Helpers for Devise
+  config.include Warden::Test::Helpers
+
   # Include helper
   config.include SelectDateAndTime
 

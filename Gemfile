@@ -17,7 +17,7 @@ group :development, :test do
   gem 'factory_girl_rails' #
   gem 'ffaker' # Random Fake Info
   # gem 'shoulda-matchers' # Model Testing Help for Rspec
-  # gem 'selenium-webdriver'
+  gem 'selenium-webdriver'
 end
 
 group :development do
