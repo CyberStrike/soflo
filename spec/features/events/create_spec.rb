@@ -6,7 +6,7 @@ context 'When creating an Event', :type => :feature do
 
   before :each do
     visit '/events'
-    click_on 'New Event'
+    click_on 'Add Event'
   end
 
   def event_defaults
