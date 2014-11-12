@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :set_date, only: [:index, :calendar]
 
@@ -32,6 +33,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.build_user_event(user: current_user) #new instance of UserEvent
 
     respond_to do |format|
       if @event.save
@@ -42,6 +44,7 @@ class EventsController < ApplicationController
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /events/1
