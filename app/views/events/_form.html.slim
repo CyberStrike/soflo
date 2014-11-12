@@ -11,10 +11,10 @@
     = f.text_field :title
   .field
     = f.label :start
-    = f.datetime_select :start
+    = f.datetime_select :start, ampm: true
   .field
     = f.label :finish
-    = f.datetime_select :finish
+    = f.datetime_select :finish, ampm: true
   .field
     = f.label :location
     = f.text_field :location
