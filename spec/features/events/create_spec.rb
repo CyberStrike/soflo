@@ -2,9 +2,11 @@ require 'rails_helper'
 
 context 'When creating an Event', :type => :feature do
 
-  let!(:event){create(:event)}
+  let!(:user){create(:user)}
+  let!(:event){build(:event)}
 
   before :each do
+    login_as user
     visit '/events'
     click_on 'Add Event'
   end
@@ -15,6 +17,9 @@ context 'When creating an Event', :type => :feature do
     fill_in 'Description', with: event.description
   end
 
+  it 'a user must be logged in to create an event' do
+    skip
+  end
 
   it 'it saves successfully' do
     event_defaults

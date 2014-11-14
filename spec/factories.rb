@@ -9,8 +9,8 @@ FactoryGirl.define do
 
   factory :event do
     title{Faker::Name.first_name}
-    start{DateTime.now + rand(100).days}
-    finish{DateTime.now + rand(100).days}
+    start{(DateTime.now + rand(100).days - rand(24).hours).at_beginning_of_minute}
+    finish{(DateTime.now + rand(100).days - rand(24).hours).at_beginning_of_minute}
     description{Faker::Lorem.paragraph}
   end
 
