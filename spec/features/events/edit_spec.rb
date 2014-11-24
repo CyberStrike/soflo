@@ -2,14 +2,16 @@ require 'rails_helper'
 
 context 'When editing an Event', :type => :feature do
 
-  let!(:user){create(:user)}
-  let!(:event){create(:event)}
+  let!(:mario){create(:user)}
+  let!(:luigi){create(:user)} # second user for testing
+  let!(:mario_event){create(:event, user: mario)}
+  let!(:luigi_event){create(:event, user: luigi)}
   let!(:event_mock){build(:event)}
 
-  before :each do |example|
-    unless example.metadata[:skip_before]
-      login_as user
-      visit event_path(event)
+  before :each do |e|
+    unless e.metadata[:skip_before]
+      login_as mario
+      visit event_path(mario_event)
       click_on 'Edit'
     end
   end
@@ -42,28 +44,13 @@ context 'When editing an Event', :type => :feature do
   end
 
   it 'a user must be logged in to edit an event', skip_before: true do
-    visit event_path(event)
+    visit event_path(mario_event)
     expect(page).not_to have_content 'Edit'
   end
 
   it 'a user can only edit their own events' do
-    skip
+    visit event_path(luigi_event)
+    expect(page).not_to have_content 'Edit'
   end
-
-  it 'a user must be logged in to destroy an event' do
-    skip
-  end
-
-  it 'a user can only destroy their own events' do
-    skip
-  end
-
-
-
-  it 'belongs to user' do
-    skip
-  end
-
-
 
 end
