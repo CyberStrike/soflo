@@ -27,6 +27,9 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+      if @event.user != current_user
+        redirect_to events_url, notice: 'Invalid Permissions.'
+      end
   end
 
   # POST /events
@@ -51,8 +54,8 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+      if @event.user == current_user && @event.update(event_params)
+          format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -64,10 +67,13 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url }
-      format.json { head :no_content }
+      if @event.user == current_user && @event.destroy
+        format.html { redirect_to events_url, notice: @event.title + ' was deleted.' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to events_url, notice: 'Invalid Permissions.' }
+      end
     end
   end
 
