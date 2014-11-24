@@ -3,6 +3,8 @@ h1 Editing event
 == render 'form'
 
 = link_to 'Show', @event
-'|
+||
+= link_to 'Delete', @event, data: {:confirm => 'Are you sure?'}, method: :delete
+||
 = link_to 'Back', events_path
 
