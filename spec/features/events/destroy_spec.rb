@@ -2,29 +2,34 @@ require 'rails_helper'
 
 context 'When deleting an Event', :type => :feature do
 
-  let!(:user){create(:user)}
-  let!(:event){create(:event, user: user)}
+  let!(:mario){create(:user)}
+  let!(:luigi){create(:user)} # second user for testing
+  let!(:mario_event){create(:event, user: mario)}
+  let!(:luigi_event){create(:event, user: luigi)}
+  let!(:event_mock){build(:event)}
 
-  before :each do
-    login_as user
-    visit '/events'
+  before :each do |e|
+    unless e.metadata[:skip_before]
+      login_as mario
+      visit event_path(mario_event)
+      click_on 'Edit'
+    end
   end
 
-  it 'a user must be logged in to destroy an event' do
-    skip
+  it 'a user must be logged in to destroy an event', skip_before: true do
+    visit edit_event_path(mario_event)
+    expect(page).to have_content 'Sign in'
   end
 
   it 'a user can only destroy their own events' do
-    skip
+    visit edit_event_path(luigi_event)
+    expect(page).to have_content 'Invalid Permissions'
   end
 
   it 'it deletes successfully' do
-    skip
-    # event_defaults
-    # select_date_and_time(event.start, from: 'event_start')
-    # select_date_and_time(event.finish, from: 'event_finish')
-    # click_on 'Save'
-    # expect(page).to have_content event.description
+    visit edit_event_path(mario_event)
+    click_on 'Delete'
+    expect(page).to have_content mario_event.title + ' was deleted.'
   end
 
 end

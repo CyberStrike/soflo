@@ -3,11 +3,11 @@ require 'rails_helper'
 context 'When creating an Event', :type => :feature do
 
   let!(:user){create(:user)}
-  let!(:event){build(:event)}
+  let!(:event){create(:event, user: user)}
 
   before :each do
     login_as user
-    visit '/events'
+    visit '/'
     click_on 'Add Event'
   end
 
@@ -15,10 +15,6 @@ context 'When creating an Event', :type => :feature do
     expect(page).to have_content 'New event'
     fill_in 'Title', with: event.title
     fill_in 'Description', with: event.description
-  end
-
-  it 'a user must be logged in to create an event' do
-    skip
   end
 
   it 'it saves successfully' do
@@ -41,9 +37,6 @@ context 'When creating an Event', :type => :feature do
     expect(page).to have_content 'is too short (minimum is 2 characters)'
   end
 
-  it 'belongs to user' do
-    skip
-  end
 
   it 'can set a future date' do
     event_defaults
@@ -76,6 +69,14 @@ context 'When creating an Event', :type => :feature do
   end
 
   it 'it can create a monthly repeating event' do
+    skip
+  end
+
+  it 'a user must be logged in to create an event' do
+    skip
+  end
+
+  it 'belongs to user' do
     skip
   end
 
