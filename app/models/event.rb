@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
 
+  before_create :initialize_user_event
+
   has_one :user_event, dependent: :destroy
   has_one :user, through: :user_event
   accepts_nested_attributes_for :user_event # Create User Event at same time
@@ -36,6 +38,8 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def initialize_user_event
+    build_user_event(user: self.user)
+  end
+
 end
-
-
