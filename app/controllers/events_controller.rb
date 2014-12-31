@@ -77,6 +77,7 @@ class EventsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
@@ -90,4 +91,5 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:title, :start, :finish, :location, :ticketurl, :description)
     end
+
 end
