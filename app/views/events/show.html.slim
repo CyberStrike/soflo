@@ -1,25 +1,69 @@
-p#notice = notice
 
-p
-  strong Title:
-  = @event.title
-p
-  strong Start:
-  = @event.start
-p
-  strong Finish:
-  = @event.finish
-p
-  strong Location:
-  = @event.location
-p
-  strong Ticketurl:
-  = @event.ticketurl
-p
-  strong Description:
-  = @event.description
+- if notice
+  p#notice = notice
 
+.icon-container
+  // Title
+  .icon-group
+    .icon
+    .icon-content
+      h4 = @event.title
+  // DateTime
+  .icon-group
+    .icon
+      i.glyphicon.glyphicon-calendar
+    .icon-content
+      - case @event.start.to_date
+        - when Date.current
+          = "Today (#{@event.start.strftime('%I:%M %P')})"
+        - when Date.current.tomorrow
+          = "Tomorrow (#{@event.start.strftime('%a, %b %d, %Y, %I:%M %P')})"
+        - when Date.current.yesterday
+          = "Yesterday (#{@event.start.strftime('%a, %b %d, %Y, %I:%M %P')})"
+        - else
+          = @event.start.strftime('%a, %b %d, %Y, %I:%M %P')
+      // Not showing end DateTime becaue it doesn't look right at the moment.
+      // TODO: If same day just show end time(Today 7:00pm - 9:00pm ), if next day in AM (Today, 4:00pm - 1:00am) , if next day in pm (Today, 4:00pm - Tomorrow 1:00pm)
+      /p
+        strong Finish:
+        - case @event.finish.to_date
+          - when Date.current
+            = "Today (#{@event.finish.strftime('%a, %b %d, %Y, %I:%M %P')})"
+          - when Date.current.tomorrow
+            = "Tomorrow (#{@event.finish.strftime('%a, %b %d, %Y, %I:%M %P')})"
+          - when Date.current.yesterday
+            = "Yesterday (#{@event.finish.strftime('%a, %b %d, %Y, %I:%M %P')})"
+          - else
+            = @event.finish.strftime('%a, %b %d, %Y, %I:%M %P')
+  // Location
+  .icon-group
+    .icon
+      i.glyphicon.glyphicon-map-marker
+    .icon-content
+      h4 The Lab Miami
+      div 400 NW 26th St
+      div Miami, Fl
+  // Tickets
+  .icon-group
+    .icon
+      i.glyphicon.glyphicon-usd
+    .icon-content
+      p Eventbrite, $15
+  // Description
+  .icon-group
+    .icon
+      i.glyphicon.glyphicon-info-sign
+    .icon-content
+      p = @event.description
+  // Owner
+  .icon-group
+    .icon
+      i.glyphicon.glyphicon-user
+    .icon-content
+      p = @event.user.email
+
+.row
+  .icon-group-footer
+    = link_to 'Back', events_path, class: 'btn btn-md btn-block btn-default'
 
 = link_to 'Edit', edit_event_path(@event) if current_user == @event.user
-'|
-= link_to 'Back', events_path

@@ -48,3 +48,52 @@
 .event
   .title
     font-size: 2em
+.icon-container
+  @extend .col-md-6
+  @extend .col-md-offset-3
+  @extend .col-xs-12
+  background: white
+  box-shadow: 3px 3px 3px rgba(178, 178, 178, 0.5)
+  padding-top: 1rem
+  padding-bottom: 2rem
+
+.icon-group
+  width: 100%
+  margin-top: 1em
+  padding-top: 1em
+  //padding-bottom: 1em
+  display: inline-block
+
+  // icon-colors
+  .glyphicon-map-marker
+    color: firebrick
+
+  .icon
+    width: 8.33333333%
+    float: left
+    position: relative
+    min-height: 1px
+    padding-right: 15px
+    padding-left: 15px
+    margin-left: -5px
+
+  .icon-content
+    font-size: 1.5rem
+    float: left
+    position: relative
+    min-height: 1px
+    padding-right: 15px
+    padding-left: 15px
+    width: 27.5rem
+    *:first-child
+      margin-top: 0
+    h4
+      margin-bottom: 5px
+    p
+      margin-bottom: 0
+
+.icon-group-footer
+  @extend .col-md-6
+  @extend .col-md-offset-3
+  @extend .text-center
+
