@@ -3,7 +3,7 @@ require 'rails_helper'
 context 'When creating an Event', :type => :feature do
 
   let!(:user){create(:user)}
-  let!(:event){create(:event, user: user)}
+  let!(:event){build(:event, user: user)}
 
   before :each do
     login_as user
@@ -43,7 +43,7 @@ context 'When creating an Event', :type => :feature do
     select_date_and_time(event.start, from: 'event_start')
     select_date_and_time(event.finish, from: 'event_finish')
     click_on 'Save'
-    expect(page).to have_content event.start
+    expect(page).to have_content event.start.strftime('%a, %b %d, %Y, %I:%M %P')
   end
 
   it 'can not set a a past date' do

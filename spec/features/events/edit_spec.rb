@@ -26,8 +26,8 @@ context 'When editing an Event', :type => :feature do
     select_date_and_time(event_mock.start, from: 'event_start')
     select_date_and_time(event_mock.finish, from: 'event_finish')
     click_on 'Save'
-    expect(page).to have_content event_mock.start
-    expect(page).to have_content event_mock.finish
+    expect(page).to have_content event_mock.start.strftime('%a, %b %d, %Y, %I:%M %P')
+    # expect(page).to have_content event_mock.finish.strftime('%a, %b %d, %Y, %I:%M %P')
     expect(page).to have_content event_mock.description
   end
 
