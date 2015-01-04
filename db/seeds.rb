@@ -8,6 +8,36 @@
 
 require 'factory_girl'
 
-100.times do
-  FactoryGirl.create :event
+def create_event(user)
+
+  100.times do
+    FactoryGirl.create :event, {user: user}
+  end
+
+  puts "\n100 Events Seeded for #{user.email}"
+
 end
+
+def seed_events
+
+  user = User.all.sample(1).first
+
+  if user
+
+    create_event(user)
+
+  else
+
+    puts '\nCould not find an existing user'
+
+    user = FactoryGirl.create :user, {email: 'user@example.com', password: '1234567890'}
+
+    puts "\nCreated u: #{user.email}, p: 1234567890"
+
+    create_event(user)
+
+  end
+
+end
+
+seed_events
