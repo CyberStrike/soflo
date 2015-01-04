@@ -1,15 +1,18 @@
 html lang='en'
+
   meta charset="utf-8"
   meta content="IE=edge" http-equiv="X-UA-Compatible"
   meta content="width=device-width, initial-scale=1" name="viewport"
   meta content="" name="description"
+
   head
     title SoFlo Alpha
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+
   body
-    nav.navbar.navbar-default role="navigation"
+    nav.navbar.navbar-soflo role="navigation"
       .container-fluid
         .navbar-header
           button.navbar-toggle.collapsed data-target="#menu" data-toggle="collapse" type="button"
@@ -21,16 +24,28 @@ html lang='en'
 
         #menu.collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-right
-            li
-              = link_to 'Add Event', new_event_path
             - if current_user
               li
-                = link_to 'Log Out', destroy_user_session_path, method: :delete
-              li
-                = link_to current_user.email, edit_user_registration_path
+                = link_to 'Add Event', new_event_path
+              li.dropdown
+                a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                  = current_user.email
+                  span.caret
+                ul.dropdown-menu role="menu"
+                  li
+                    a href="#"
+                      | My Events
+                      // Todo make my events
+                  li
+                    = link_to 'Edit Profile', edit_user_registration_path
+                  li.divider
+                  li
+                    = link_to 'Log Out', destroy_user_session_path, method: :delete
             - else
               li
                 = link_to 'Register', new_user_registration_path
+              li
+                = link_to 'Log In', new_user_session_path
 
     /.text-center
       .alert.alert-warning
