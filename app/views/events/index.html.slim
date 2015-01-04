@@ -38,5 +38,6 @@
               = event.starttime.to_s + " - " + event.title.to_s
 
     - else
-      h3.text-muted No Events this week. :(
-      = link_to 'Add one', new_event_path, class: 'btn btn-success'
+      .text-center
+        h3.text-muted No Events this week. :(
+        = link_to 'Add An Event', new_event_path, class: 'btn btn-success'
