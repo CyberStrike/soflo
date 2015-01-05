@@ -35,7 +35,7 @@
         - day[1].each do |event|
           = link_to event do
             p.text-center
-              = event.starttime.to_s + " - " + event.title.to_s
+              = event.starttime.to_time.strftime('%I:%M %p') + " - " + event.title.to_s
 
     - else
       .text-center
