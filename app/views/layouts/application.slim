@@ -35,9 +35,9 @@ html lang='en'
                   li
                     a href="#"
                       | My Events
-                      // Todo make my events
+                      // Todo show all events that belong to a user
                   li
-                    = link_to 'Edit Profile', edit_user_registration_path
+                    = link_to 'Profile', edit_user_registration_path
                   li.divider
                   li
                     = link_to 'Log Out', destroy_user_session_path, method: :delete
