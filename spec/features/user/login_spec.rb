@@ -7,10 +7,10 @@ context 'When a user logs in', :type => :feature do
   before :each do
     visit '/'
     click_on 'Register'
-    click_on 'Sign in'
+    click_on 'Log in'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
-    click_on 'Sign in'
+    click_on 'Log in'
   end
 
   it 'it is successful' do
@@ -18,7 +18,7 @@ context 'When a user logs in', :type => :feature do
   end
 
   it 'the profile link is visible' do
-    expect(page).to have_content user.email
+    expect(page).to have_content 'Profile'
   end
 
   it 'they do not see register' do
