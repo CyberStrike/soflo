@@ -1,27 +1,50 @@
-= form_for @event do |f|
-  - if @event.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
-      ul
-        - @event.errors.full_messages.each do |message|
-          li = message
+.icon-container
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :start
-    = f.datetime_select :start, ampm: true
-  .field
-    = f.label :finish
-    = f.datetime_select :finish, ampm: true
-  .field
-    = f.label :location
-    = f.text_field :location
-  .field
-    = f.label :ticketurl
-    = f.text_field :ticketurl
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions = f.submit 'Save'
+  = form_for @event, :html => {class:'form'} do |f|
+    - if @event.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+        ul
+          - @event.errors.full_messages.each do |message|
+            li = message
+    // Title
+    .icon-group
+      .icon
+      .icon-content = f.text_field :title, placeholder:'Event Title'
+    .icon-group
+      .icon
+        i.glyphicon.glyphicon-time
+      .icon-content
+        .form-group
+          = f.time_select :start, ampm: true, class:'form-control'
+    // Date
+    .icon-group
+      .icon
+        i.glyphicon.glyphicon-calendar
+      .icon-content
+        = f.date_select :start
+    // Location
+    .icon-group
+      .icon
+        i.glyphicon.glyphicon-map-marker
+      .icon-content
+        .form-group
+          = f.text_field :location, class:'form-control', placeholder: 'Add Location'
+    // Tickets
+    .icon-group
+      .icon
+        i.glyphicon.glyphicon-usd
+      .icon-content
+        .form-group
+          = f.text_field :ticketurl, class:'form-control'
+    // Description
+    .icon-group
+      .icon
+        i.glyphicon.glyphicon-info-sign
+      .icon-content
+        .form-group
+          = f.text_area :description, class:'form-control', placeholder:'A description of the event'
+    .icon-group
+      .icon
+      .icon-content
+        .actions = f.submit 'Save', class:'btn btn-block btn-success'
