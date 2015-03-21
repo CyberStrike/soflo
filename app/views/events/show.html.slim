@@ -4,7 +4,7 @@
   .icon-group
     .icon
     .icon-content
-      h4 = @event.title
+      h3 = @event.title
   // DateTime
   .icon-group
     .icon
@@ -58,9 +58,8 @@
       i.glyphicon.glyphicon-user
     .icon-content
       p = @event.user.email
-
-.row
-  .icon-group-footer
-    = link_to 'Back', events_path, class: 'btn btn-md btn-block btn-default'
-
-= link_to 'Edit', edit_event_path(@event) if current_user == @event.user
+  - if current_user == @event.user
+    .icon-group
+      .icon
+      .icon-content
+        = link_to 'Edit', edit_event_path(@event), class:'btn btn-block btn-warning'

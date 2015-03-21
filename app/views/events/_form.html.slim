@@ -11,6 +11,7 @@
     .icon-content
       .form-group
         = f.text_field :title, class:'form-control', placeholder:'Event Title'
+  // Time
   .icon-group
     .icon
       i.glyphicon.glyphicon-time
@@ -51,7 +52,7 @@
       - if current_page?(controller: :events, action: 'edit', id: (params[:id] || ''))
         .btn-group-soflo
           = f.submit 'Save', class:'btn btn-left-soflo btn-success'
-          = link_to @event, class: 'btn btn-right-soflo btn-danger', data: {:confirm => 'Are you sure?'}, method: :delete do
+          = link_to @event, class: 'btn btn-right-soflo btn-danger', name: 'delete',data: {:confirm => 'Are you sure?'}, method: :delete do
             .glyphicon.glyphicon-trash
       - else
         = f.submit 'Save', class: 'btn btn-block btn-success'

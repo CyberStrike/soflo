@@ -12,46 +12,49 @@ context 'When creating an Event', :type => :feature do
   end
 
   def event_defaults
-    expect(page).to have_content 'New event'
-    fill_in 'Title', with: event.title
-    fill_in 'Description', with: event.description
+    fill_in 'event_title', with: event.title
+    fill_in 'event_description', with: event.description
   end
 
   it 'it saves successfully' do
     event_defaults
-    select_date_and_time(event.start, from: 'event_start')
-    select_date_and_time(event.finish, from: 'event_finish')
+    # select_date_and_time(event.start, from: 'event_start')
+    # select_date_and_time(event.finish, from: 'event_finish')
+    select_time(event.start, from: 'event_start')
+    select_date(event.start, from: 'event_start')
     click_on 'Save'
     expect(page).to have_content event.description
   end
 
   it 'it displays error without title of more than two characters' do
-    fill_in 'Title', with: 'a'
+    fill_in 'event_title', with: 'a'
     click_on 'Save'
     expect(page).to have_content 'is too short (minimum is 2 characters)'
   end
 
   it 'it displays error without description of more than 2 characters' do
-    fill_in 'Description', with: 'a'
+    fill_in 'event_description', with: 'a'
     click_on 'Save'
     expect(page).to have_content 'is too short (minimum is 2 characters)'
   end
 
-
   it 'can set a future date' do
     event_defaults
-    select_date_and_time(event.start, from: 'event_start')
-    select_date_and_time(event.finish, from: 'event_finish')
+    # select_date_and_time(event.start, from: 'event_start')
+    # select_date_and_time(event.finish, from: 'event_finish')
+    select_time(event.start, from: 'event_start')
+    select_date(event.start, from: 'event_start')
     click_on 'Save'
     expect(page).to have_content event.start.strftime('%a, %b %d, %Y, %I:%M %P')
   end
 
   it 'can not set a a past date' do
-    expect(page).to have_content 'New event'
-    fill_in 'Title', with: event.title
-    fill_in 'Description', with: event.description
-    select_date_and_time(DateTime.now - 10.days, from: 'event_start')
-    select_date_and_time(event.finish, from: 'event_finish')
+    fill_in 'event_title', with: event.title
+    fill_in 'event_description', with: event.description
+    # select_date_and_time(DateTime.now - 10.days, from: 'event_start')
+    # select_date_and_time(event.finish, from: 'event_finish')
+    select_time(event.start, from: 'event_start')
+    select_date(event.start, from: 'event_start')
     click_on 'Save'
     expect(page).to have_content 'No Time Traveling Allowed'
   end

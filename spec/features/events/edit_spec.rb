@@ -21,10 +21,10 @@ context 'When editing an Event', :type => :feature do
   end
 
   it 'it saves successfully' do
-    fill_in 'Title', with: event_mock.title
-    fill_in 'Description', with: event_mock.description
-    select_date_and_time(event_mock.start, from: 'event_start')
-    select_date_and_time(event_mock.finish, from: 'event_finish')
+    fill_in 'event_title', with: event_mock.title
+    fill_in 'event_description', with: event_mock.description
+    select_time(event_mock.start, from: 'event_start')
+    select_date(event_mock.start, from: 'event_start')
     click_on 'Save'
     expect(page).to have_content event_mock.start.strftime('%a, %b %d, %Y, %I:%M %P')
     # expect(page).to have_content event_mock.finish.strftime('%a, %b %d, %Y, %I:%M %P')
@@ -32,13 +32,13 @@ context 'When editing an Event', :type => :feature do
   end
 
   it 'it displays error without title of more than two characters' do
-    fill_in 'Title', with: 'a'
+    fill_in 'event_title', with: 'a'
     click_on 'Save'
     expect(page).to have_content 'is too short (minimum is 2 characters)'
   end
 
   it 'it displays error without description of more than 2 characters' do
-    fill_in 'Description', with: 'a'
+    fill_in 'event_description', with: 'a'
     click_on 'Save'
     expect(page).to have_content 'is too short (minimum is 2 characters)'
   end

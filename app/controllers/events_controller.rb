@@ -27,15 +27,18 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-      if @event.user != current_user
-        redirect_to events_url, notice: 'Invalid Permissions.'
-      end
+    if @event.user != current_user
+      redirect_to events_url, notice: 'Invalid Permissions.'
+    end
   end
 
   # POST /events
   # POST /events.json
   def create
+
+
     @event = Event.new(event_params.merge(user: current_user))
+    @event.finish = @event.start + 5.hours
 
     respond_to do |format|
       if @event.save

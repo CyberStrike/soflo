@@ -28,7 +28,7 @@ context 'When deleting an Event', :type => :feature do
 
   it 'it deletes successfully' do
     visit edit_event_path(mario_event)
-    click_on 'Delete'
+    find('.btn-danger').click
     expect(page).to have_content mario_event.title + ' was deleted.'
   end
 
