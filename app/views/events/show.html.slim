@@ -41,11 +41,12 @@
       div 400 NW 26th St
       div Miami, Fl
   // Tickets
-  .icon-group
-    .icon
-      i.glyphicon.glyphicon-usd
-    .icon-content
-      p Eventbrite, $15
+  - if @event.ticketurl.present?
+    .icon-group
+      .icon
+        i.glyphicon.glyphicon-usd
+      .icon-content
+        p = @event.ticketurl
   // Description
   .icon-group
     .icon

@@ -8,6 +8,11 @@ class EventsController < ApplicationController
   def index
     # @events = Event.all
     @events_by_week = Event.where(:start => @date.beginning_of_week..@date.end_of_week ).order(:start).group_by(&:startdate) || Event.this_week.order(:start).group_by(&:startdate)
+
+    ## display variables
+
+    @display_month = @date.year < Date.current.year ? @date.strftime("%B %Y") : @date.strftime("%B")
+
   end
 
   def calendar

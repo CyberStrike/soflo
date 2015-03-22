@@ -34,17 +34,17 @@
   // Tickets
   .icon-group
     .icon
-      i.glyphicon.glyphicon-usd
+      i.glyphicon.glyphicon-qrcode
     .icon-content
       .form-group
-        = f.text_field :ticketurl, class:'form-control'
+        = f.text_field :ticketurl, class:'form-control', placeholder: 'Tickets Url'
   // Description
   .icon-group
     .icon
       i.glyphicon.glyphicon-info-sign
     .icon-content
       .form-group
-        = f.text_area :description, class:'form-control', placeholder:'A description of the event'
+        = f.text_area :description, class:'form-control', placeholder:'A description of the event', rows: 5
   .icon-group
     .icon
     .icon-content

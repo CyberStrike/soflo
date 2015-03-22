@@ -10,7 +10,7 @@
 .row
   .col-lg-8.col-lg-push-2
     h2.text-center#month
-      = link_to @date.strftime("%B %Y"), date: Date.current
+      = link_to @display_month, date: Date.current
     h5.text-center
       ul.pagination
         li = link_to date: @date.prev_week do
