@@ -54,7 +54,7 @@ context 'When creating an Event', :type => :feature do
     # select_date_and_time(DateTime.now - 10.days, from: 'event_start')
     # select_date_and_time(event.finish, from: 'event_finish')
     select_time(event.start, from: 'event_start')
-    select_date(event.start, from: 'event_start')
+    select_date(Date.current - 10.days, from: 'event_start')
     click_on 'Save'
     expect(page).to have_content 'No Time Traveling Allowed'
   end
