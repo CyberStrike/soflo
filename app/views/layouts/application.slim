@@ -20,9 +20,9 @@ html lang='en'
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          - if current_page? controller: 'events', action: 'index'
+          - if (request['controller'] == 'events') & (request['action'] == 'index')
             = link_to 'SoFlo Alpha', root_path, class: 'navbar-brand'
-          - elsif current_page? action: 'edit', id: params[:id]||0
+          - elsif request['action'] == 'edit'
             = link_to :back, class: 'navbar-brand' do
               span.glyphicon.glyphicon-menu-left
               | Back
