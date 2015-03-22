@@ -36,7 +36,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
 
-
     @event = Event.new(event_params.merge(user: current_user))
     @event.finish = @event.start + 5.hours
 
