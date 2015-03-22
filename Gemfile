@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
+ruby '2.2.0'
 
 # Libraries
 ####################
@@ -27,6 +28,7 @@ group :development do
 end
 
 group :production do
+  gem 'puma'
   gem 'pg' # Postgresql DB
   gem 'rails_12factor' # Heroku asset handler
 end
