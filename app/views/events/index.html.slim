@@ -11,7 +11,7 @@
   .col-lg-8.col-lg-push-2
     h2.text-center#month
       = link_to @date.strftime("%B %Y"), date: Date.current
-    h4.text-center
+    h5.text-center
       ul.pagination
         li = link_to date: @date.prev_week do
           span.glyphicon.glyphicon-chevron-left
@@ -22,15 +22,16 @@
           span.glyphicon.glyphicon-chevron-right
     - unless @events_by_week.empty?
       - @events_by_week.each do |day|
+        hr
         - case day[0]
           - when Date.current
-            h3.text-center = "Today (#{day[0].strftime('%a, %b %d, %Y')})"
+            p.text-muted.text-center = "Today (#{day[0].strftime('%a, %b %d, %Y')})"
           - when Date.current.tomorrow
-            h3.text-center = "Tomorrow (#{day[0].strftime('%a, %b %d, %Y')})"
+            p.text-muted.text-center = "Tomorrow (#{day[0].strftime('%a, %b %d, %Y')})"
           - when Date.current.yesterday
-            h3.text-center = "Yesterday (#{day[0].strftime('%a, %b %d, %Y')})"
+            p.text-muted.text-center = "Yesterday (#{day[0].strftime('%a, %b %d, %Y')})"
           - else
-            h3.text-center = day[0].strftime('%a, %b %d, %Y')
+            p.text-muted.text-center = day[0].strftime('%a, %b %d, %Y')
         hr
         - day[1].each do |event|
           = link_to event do

@@ -48,14 +48,14 @@
 .event
   .title
     font-size: 2em
-    
+
 .icon-container
   @extend .col-xs-12
   @extend .col-sm-8
-  @extend .col-sm-offset-2
   @extend .col-md-6
-  @extend .col-md-offset-3
-
+  @extend .col-lg-5
+  @include center-block
+  float: none
   background: white
   box-shadow: 3px 3px 3px rgba(178, 178, 178, 0.5)
   padding-top: 1rem
@@ -87,7 +87,13 @@
     min-height: 1px
     padding-right: 15px
     padding-left: 15px
-    width: 22.5rem
+    width: 17rem
+    @media (min-width: $screen-xs )
+      width: 90%
+    @media (min-width: $screen-sm )
+      width: 22.5rem
+    @media (min-width: $screen-md )
+      width: 25.5rem
     *:first-child
       margin-top: 0
     h3
