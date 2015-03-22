@@ -68,8 +68,9 @@ html lang='en'
 
     .container
       - unless flash.empty?
-        .notice = notice
-        .alert = alert
+        .text-center
+          .notice.text-info = notice
+          .alert.text-danger = alert
       = yield
 
     .site-footer

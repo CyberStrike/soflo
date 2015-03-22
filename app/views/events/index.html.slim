@@ -1,4 +1,4 @@
-.row
+/.row
   .btn-group.pull-right
     = link_to root_path, class: 'btn btn-warning' do
       span.glyphicon.glyphicon-list
@@ -10,13 +10,13 @@
 .row
   .col-lg-8.col-lg-push-2
     h2.text-center#month
-      = @date.strftime("%B %Y")
+      = link_to @date.strftime("%B %Y"), date: Date.current
     h4.text-center
       ul.pagination
         li = link_to date: @date.prev_week do
           span.glyphicon.glyphicon-chevron-left
           = @date.prev_week.beginning_of_week.strftime('%b %d') +  ' - ' +  @date.prev_week.end_of_week.strftime('%d')
-        li = link_to 'Today', date: Date.current
+        /li = link_to 'Today', date: Date.current
         li = link_to date: @date.next_week do
           = @date.next_week.beginning_of_week.strftime('%b %d') +  ' - ' +  @date.next_week.end_of_week.strftime('%d')
           span.glyphicon.glyphicon-chevron-right

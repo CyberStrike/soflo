@@ -48,6 +48,7 @@
 .event
   .title
     font-size: 2em
+    
 .icon-container
   @extend .col-xs-12
   @extend .col-sm-8
@@ -81,13 +82,12 @@
     margin-left: -5px
 
   .icon-content
-    font-size: 1.5rem
     float: left
     position: relative
     min-height: 1px
     padding-right: 15px
     padding-left: 15px
-    width: 27.5rem
+    width: 22.5rem
     *:first-child
       margin-top: 0
     h3
@@ -100,4 +100,23 @@
       top: 4px
     .form-group
       margin-bottom: 0
+    select
+      font-size: 0.85rem
+      background: none
 
+  .form-control
+    font-size: 1rem
+    padding: 6px 0
+    border-radius: 0
+    border-top: 0
+    border-left: 0
+    border-right: 0
+    -webkit-box-shadow: none
+    box-shadow: none
+    -webkit-user-select: none
+    &:focus
+      -webkit-box-shadow: none
+      box-shadow: none
+      -webkit-user-select: none
+    input
+      outline: none
