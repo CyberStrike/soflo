@@ -1,3 +1,5 @@
+[![Stories in Ready](https://badge.waffle.io/CyberStrike/soflo.svg?label=ready&title=Ready)](http://waffle.io/CyberStrike/soflo)
+
 ## SoFlo
 
 Smart Event Calendar for the Miami Tech Community
