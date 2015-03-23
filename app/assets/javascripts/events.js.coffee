@@ -20,25 +20,7 @@ $(document).on 'ready page:load', ->
       # Get the place details from the autocomplete object.
       place = @autocomplete.getPlace()
 
-      # Build Location Object
-      for component in place.address_components
-        console.log component.types[0]
-        console.log component
-
-      location =
-        name: place.name
-        streetNumber: place.address_components[0].long_name
-        street: place.address_components[1].short_name
-        city: place.address_components[2].short_name
-        state: place.address_components[3].short_name
-        zip: place.address_components[5].short_name
-        country: place.address_components[4].short_name
-        streetAddr: ->
-          this.streetNumber + " " + this.street
-
       console.log place
-
-
 
       # Build Static Map
       staticMap =
@@ -49,12 +31,15 @@ $(document).on 'ready page:load', ->
 
       mapImageUrl = staticMap.baseurl + staticMap.location + staticMap.options + staticMap.markers
 
+      location = locationAdapter(place)
+
       $('#location_addr').html(
-        "<h4>#{place.name}</h4>" + "<p>#{location.streetAddr()}" + "<br>" + "#{location.city + ', ' + location.state}</p>")
+          "<h4>#{place.name}</h4>" + "<p>#{location.streetAddr()}" + "#{ if location.unit? then (' #' + location.unit) else '' }" + "<br>" + "#{location.city + ', ' + location.state}</p>")
 
 
       addMap(mapImageUrl)
       setLocationInfo(location)
+
 
     addMap = (mapImageUrl)->
       $mapItem = $('#location_map')
@@ -62,6 +47,33 @@ $(document).on 'ready page:load', ->
         .slideUp complete: ->
           $(this).html("<img class='img-responsive center-block' src=#{encodeURI(mapImageUrl)}>")
           $(this).slideDown()
+
+    # Build Location Object
+    locationAdapter = (place) ->
+      location =
+        name: place.name
+        unit: undefined
+        streetNumber: ''
+        street: ''
+        city:''
+        state: ''
+        zip: ''
+        country: ''
+        longAddress: place.formatted_address
+        streetAddr: ->
+          this.streetNumber + " " + this.street
+
+      for component in place.address_components
+        address_type = component.types[0]
+        location.unit = component.long_name if address_type == "subpremise"
+        location.streetNumber = component.long_name if address_type == "street_number"
+        location.street = component.short_name if address_type == "route"
+        location.city = component.short_name if address_type == "locality"
+        location.state = component.short_name if address_type == "administrative_area_level_1"
+        location.zip = component.short_name if address_type == "postal_code"
+        location.country = component.short_name if address_type == "country"
+
+      return location
 
     setLocationInfo = (location) ->
       $('#event_location_name').val location.name
