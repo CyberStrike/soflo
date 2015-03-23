@@ -30,7 +30,16 @@
       i.glyphicon.glyphicon-map-marker
     .icon-content
       .form-group
-        = f.text_field :location, class:'form-control', placeholder: 'Add Location', tabindex: autoTabIndex
+        = text_field_tag :event_location,'', class:'form-control', placeholder: 'Add Location', tabindex: autoTabIndex, name:''
+        = f.fields_for @location do |lf|
+          = lf.hidden_field :name
+          = lf.hidden_field :streetnumber
+          = lf.hidden_field :street
+          = lf.hidden_field :city
+          = lf.hidden_field :state
+          = lf.hidden_field :zip
+          = lf.hidden_field :country
+
   .location-group
     #location_addr
     #location_map style="display: none"

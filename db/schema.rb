@@ -11,17 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126202353) do
+ActiveRecord::Schema.define(version: 20150323045426) do
 
   create_table "events", force: true do |t|
     t.string   "title"
     t.datetime "start"
     t.datetime "finish"
-    t.string   "location"
     t.string   "ticketurl"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
+  end
+
+  create_table "location_events", force: true do |t|
+    t.integer  "location_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "location_events", ["event_id"], name: "index_location_events_on_event_id"
+  add_index "location_events", ["location_id"], name: "index_location_events_on_location_id"
+
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.string   "streetnumber"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_events", force: true do |t|

@@ -21,7 +21,12 @@ $(document).on 'ready page:load', ->
       place = @autocomplete.getPlace()
 
       # Build Location Object
-      location=
+      for component in place.address_components
+        console.log component.types[0]
+        console.log component
+
+      location =
+        name: place.name
         streetNumber: place.address_components[0].long_name
         street: place.address_components[1].short_name
         city: place.address_components[2].short_name
@@ -31,27 +36,41 @@ $(document).on 'ready page:load', ->
         streetAddr: ->
           this.streetNumber + " " + this.street
 
+      console.log place
+
+
+
       # Build Static Map
       staticMap =
         baseurl: "https://maps.googleapis.com/maps/api/staticmap?"
-        location: "center=" + place.formatted_address
+        location: "center=" + place.geometry.location
         options: "&zoom=18&size=640x320&maptype=roadmap"
         markers: "&markers=color:red|#{place.geometry.location.toUrlValue()}"
 
-      mapImage = staticMap.baseurl + staticMap.location + staticMap.options + staticMap.markers
+      mapImageUrl = staticMap.baseurl + staticMap.location + staticMap.options + staticMap.markers
 
       $('#location_addr').html(
         "<h4>#{place.name}</h4>" + "<p>#{location.streetAddr()}" + "<br>" + "#{location.city + ', ' + location.state}</p>")
 
 
-      addMap(mapImage)
+      addMap(mapImageUrl)
+      setLocationInfo(location)
 
-    addMap = (mapImage)->
+    addMap = (mapImageUrl)->
       $mapItem = $('#location_map')
       $mapItem
         .slideUp complete: ->
-          $(this).html("<img class='img-responsive center-block' src=#{encodeURI(mapImage)}>")
+          $(this).html("<img class='img-responsive center-block' src=#{encodeURI(mapImageUrl)}>")
           $(this).slideDown()
+
+    setLocationInfo = (location) ->
+      $('#event_location_name').val location.name
+      $('#event_location_streetnumber').val location.streetNumber
+      $('#event_location_street').val location.street
+      $('#event_location_city').val location.city
+      $('#event_location_state').val location.state
+      $('#event_location_zip').val location.zip
+      $('#event_location_country').val location.country
 
     # Bias the autocomplete object to the user's geographical location,
     # as supplied by the browser's 'navigator.geolocation' object.
@@ -63,6 +82,7 @@ $(document).on 'ready page:load', ->
             position.coords.longitude)
           @autocomplete.setBounds new google.maps.LatLngBounds(
             geolocation, geolocation)
+
     # Enable autocomplete when focused
     $('#event_location').on "focusin", (e)->
       automagic()

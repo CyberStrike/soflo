@@ -38,9 +38,10 @@
     .icon
       i.glyphicon.glyphicon-map-marker
     .icon-content
-      h4 The Lab Miami
-      div 400 NW 26th St
-      div Miami, Fl
+      = link_to @event.location.googlemapsurl do
+        h4 = @event.location.name
+        p = @event.location.streetAddress
+        p = @event.location.cityState
 
   // Tickets
   - if @event.ticketurl.present?

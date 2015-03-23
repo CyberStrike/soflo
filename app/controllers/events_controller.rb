@@ -28,10 +28,12 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @location = @event.build_location_event.build_location
   end
 
   # GET /events/1/edit
   def edit
+    @location = @event.location || @event.build_location_event.build_location
     if @event.user != current_user
       redirect_to events_url, notice: 'Invalid Permissions.'
     end
@@ -41,8 +43,11 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
 
-    @event = Event.new(event_params.merge(user: current_user))
-    @event.finish = @event.start + 5.hours
+    @event = Event.new(event_params.except(:location))
+    @event.user = current_user
+    # Since we aren't using finish in the view at the moment set it to all day.
+    @event.finish = @event.start + 23.hours
+    @event.build_location_event.location = Location.find_or_initialize_by(location_params)
 
     respond_to do |format|
       if @event.save
@@ -59,9 +64,12 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+
+    @event.location_event.location = Location.find_or_initialize_by(location_params)
+
     respond_to do |format|
-      if @event.user == current_user && @event.update(event_params)
-          format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+      if @event.user == current_user && @event.update(event_params.except(:location))
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -96,7 +104,11 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :start, :finish, :location, :ticketurl, :description)
+      params.require(:event).permit(:title, :start, :finish, :ticketurl, :description, :location => [:name, :streetnumber, :street, :city, :state, :zip, :country])
+    end
+
+    def location_params
+      event_params[:location]
     end
 
 end
