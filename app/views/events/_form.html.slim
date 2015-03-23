@@ -10,41 +10,45 @@
     .icon
     .icon-content
       .form-group
-        = f.text_field :title, class:'form-control', placeholder:'Event Title'
+        = f.text_field :title, class:'form-control', placeholder:'Event Title', tabindex: autoTabIndex
   // Time
   .icon-group
     .icon
       i.glyphicon.glyphicon-time
     .icon-content
       .form-group
-        = f.time_select :start, ampm: true, class:'form-control'
+        = f.time_select :start, ampm: true, class:'form-control', tabindex: autoTabIndex
   // Date
   .icon-group
     .icon
       i.glyphicon.glyphicon-calendar
     .icon-content
-      = f.date_select :start
+      = f.date_select :start, order:[:month, :day, :year], tabindex: autoTabIndex
   // Location
   .icon-group
     .icon
       i.glyphicon.glyphicon-map-marker
     .icon-content
       .form-group
-        = f.text_field :location, class:'form-control', placeholder: 'Add Location'
+        = f.text_field :location, class:'form-control', placeholder: 'Add Location', tabindex: autoTabIndex
+  .location-group
+    #location_addr
+    #location_map style="display: none"
+
   // Tickets
   .icon-group
     .icon
       i.glyphicon.glyphicon-qrcode
     .icon-content
       .form-group
-        = f.text_field :ticketurl, class:'form-control', placeholder: 'Tickets Url'
+        = f.text_field :ticketurl, class:'form-control', placeholder: 'Tickets Url', tabindex: autoTabIndex
   // Description
   .icon-group
     .icon
       i.glyphicon.glyphicon-info-sign
     .icon-content
       .form-group
-        = f.text_area :description, class:'form-control', placeholder:'A description of the event', rows: 5
+        = f.text_area :description, class:'form-control', placeholder:'A description of the event', rows: 5, tabindex: autoTabIndex
   .icon-group
     .icon
     .icon-content

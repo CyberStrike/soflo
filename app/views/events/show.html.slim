@@ -1,3 +1,4 @@
+= hidden_field_tag "location", @event.location
 
 .icon-container
   // Title
@@ -40,6 +41,7 @@
       h4 The Lab Miami
       div 400 NW 26th St
       div Miami, Fl
+
   // Tickets
   - if @event.ticketurl.present?
     .icon-group

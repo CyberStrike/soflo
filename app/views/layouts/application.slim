@@ -9,10 +9,12 @@ html lang='en'
     title SoFlo Alpha
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
   body id=params[:controller] class=params[:action]
     = render 'partial/nav'
+
 
     /.text-center
       .alert.alert-warning
