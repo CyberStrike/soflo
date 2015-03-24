@@ -47,9 +47,9 @@
   - if @event.ticketurl.present?
     .icon-group
       .icon
-        i.glyphicon.glyphicon-usd
+        i.glyphicon.glyphicon-qrcode
       .icon-content
-        p = @event.ticketurl
+        = link_to @event.ticketurl, @event.ticketurl
   // Description
   .icon-group
     .icon
