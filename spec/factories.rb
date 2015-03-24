@@ -1,6 +1,19 @@
 require 'ffaker'
 
-FactoryGirl.define do
+FactoryGirl.define do  factory :location_event do
+    location nil
+event nil
+  end
+
+  factory :location do
+    name "MyString"
+    streetnumber "MyString"
+    street "MyString"
+    city "MyString"
+    state "MyString"
+    zip "MyString"
+    country "MyString"
+  end
 
   factory :user do
     email{Faker::Internet.free_email}

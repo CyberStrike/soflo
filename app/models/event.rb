@@ -6,6 +6,11 @@ class Event < ActiveRecord::Base
   has_one :user, through: :user_event
   accepts_nested_attributes_for :user_event # Create User Event at same time
 
+  has_one :location_event, dependent: :destroy
+  has_one :location, through: :location_event
+  accepts_nested_attributes_for :location
+  accepts_nested_attributes_for :location_event
+
   validates :title,
     presence: true,
     length:{minimum: 2}
