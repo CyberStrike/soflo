@@ -22,6 +22,16 @@ $(document).on 'ready page:load', ->
 
       console.log place
 
+      location = locationAdapter(place)
+
+      $('#location_addr').html(
+          "<h4>#{place.name}</h4>" + "<p>#{location.streetAddr()}" + "#{ if location.unit? then (' #' + location.unit) else '' }" + "<br>" + "#{location.city + ', ' + location.state}</p>")
+
+      addMap($('#location_map'), place)
+      setLocationInfo(location)
+
+    addMap = ($mapItem, place)->
+
       # Build Static Map
       staticMap =
         baseurl: "https://maps.googleapis.com/maps/api/staticmap?"
@@ -31,23 +41,14 @@ $(document).on 'ready page:load', ->
 
       mapImageUrl = staticMap.baseurl + staticMap.location + staticMap.options + staticMap.markers
 
-      location = locationAdapter(place)
-
-      $('#location_addr').html(
-          "<h4>#{place.name}</h4>" + "<p>#{location.streetAddr()}" + "#{ if location.unit? then (' #' + location.unit) else '' }" + "<br>" + "#{location.city + ', ' + location.state}</p>")
-
-
-      addMap(mapImageUrl)
-      setLocationInfo(location)
-
-
-    addMap = (mapImageUrl)->
-      $mapItem = $('#location_map')
       $mapItem
         .slideUp complete: ->
           $(this).html("<img class='img-responsive center-block' src=#{encodeURI(mapImageUrl)}>")
           $(this).slideDown()
 
+    addAddress = (location)->
+      $('#location_addr')
+        .html("<h4>#{location.name}</h4>" + "<p>#{location.streetAddr()}" + "#{ if location.unit? then (' #' + location.unit) else '' }" + "<br>" + "#{location.city + ', ' + location.state}</p>")
     # Build Location Object
     locationAdapter = (place) ->
       location =
@@ -59,7 +60,7 @@ $(document).on 'ready page:load', ->
         state: ''
         zip: ''
         country: ''
-        longAddress: place.formatted_address
+        long_address: place.formatted_address
         streetAddr: ->
           this.streetNumber + " " + this.street
 
@@ -83,6 +84,9 @@ $(document).on 'ready page:load', ->
       $('#event_location_state').val location.state
       $('#event_location_zip').val location.zip
       $('#event_location_country').val location.country
+      $('#event_location_unit').val location.unit
+      $('#event_location_long_address').val location.long_address
+
 
     # Bias the autocomplete object to the user's geographical location,
     # as supplied by the browser's 'navigator.geolocation' object.
@@ -104,3 +108,7 @@ $(document).on 'ready page:load', ->
         if event.keyCode == 13
           e.stopPropagation()
           e.preventDefault()
+
+#    if $('#events.edit')[0]?
+#      $('#location_addr').html(
+#        "<h4>#{place.name}</h4>" + "<p>#{location.streetAddr()}" + "#{ if location.unit? then (' #' + location.unit) else '' }" + "<br>" + "#{location.city + ', ' + location.state}</p>")

@@ -46,7 +46,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params.except(:location))
     @event.user = current_user
     # Since we aren't using finish in the view at the moment set it to all day.
-    @event.finish = @event.start + 23.hours
+    @event.finish = @event.start.end_of_day
     @event.build_location_event.location = Location.find_or_initialize_by(location_params)
 
     respond_to do |format|
@@ -66,6 +66,8 @@ class EventsController < ApplicationController
   def update
 
     @event.location_event.location = Location.find_or_initialize_by(location_params)
+    @event.location_event.location.update(location_params)
+
 
     respond_to do |format|
       if @event.user == current_user && @event.update(event_params.except(:location))
@@ -104,7 +106,7 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :start, :finish, :ticketurl, :description, :location => [:name, :streetnumber, :street, :city, :state, :zip, :country])
+      params.require(:event).permit(:title, :start, :finish, :ticketurl, :description, :location => [:name, :streetnumber, :street, :city, :state, :zip, :country, :unit, :long_address])
     end
 
     def location_params
