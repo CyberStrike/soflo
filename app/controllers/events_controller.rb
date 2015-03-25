@@ -36,6 +36,7 @@ class EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @location = @event.location || @event.build_location_event.build_location
+
     if @event.user != current_user
       redirect_to events_url, notice: 'Invalid Permissions.'
     end

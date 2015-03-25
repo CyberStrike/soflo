@@ -12,4 +12,12 @@ class Location < ActiveRecord::Base
   def googlemapsurl
     'http://maps.google.com/?q=' + self.long_address
   end
+
+  def to_s
+    if long_address
+      [name.to_s, long_address.to_s].join(', ')
+    else
+      ''
+    end
+  end
 end
