@@ -20,7 +20,7 @@
           = "Yesterday (#{@event.start.strftime('%a, %b %d, %Y, %I:%M %P')})"
         - else
           = @event.start.strftime('%a, %b %d, %Y, %I:%M %P')
-      // Not showing end DateTime becaue it doesn't look right at the moment.
+      // Not showing end DateTime because it doesn't look right at the moment.
       // TODO: If same day just show end time(Today 7:00pm - 9:00pm ), if next day in AM (Today, 4:00pm - 1:00am) , if next day in pm (Today, 4:00pm - Tomorrow 1:00pm)
       /p
         strong Finish:
@@ -55,7 +55,7 @@
     .icon
       i.glyphicon.glyphicon-info-sign
     .icon-content
-      p = @event.description
+      p == @event.description.gsub(/\n/, '<br />')
   // Owner
   .icon-group
     .icon
