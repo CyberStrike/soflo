@@ -6,8 +6,10 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    # @events = Event.all
-    @events_by_week = Event.where(:start => @date.beginning_of_week..@date.end_of_week ).order(:start).group_by(&:startdate) || Event.this_week.order(:start).group_by(&:startdate)
+    # Lets just show the next 20 events and worry about proper navigation sorting other time.
+    @events_by_week = Event.where('start > ?', @date).order(:start).limit(params[:limit]).group_by(&:startdate)
+
+    # @events_by_week = Event.where(:start => @date.yesterday..@date.at_end_of_week + 1.day).order(:start).group_by(&:startdate) || Event.this_week.order(:start).group_by(&:startdate)
 
     ## display variables
 
@@ -64,6 +66,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @location = @event.location || @event.build_location_event.build_location
 
     @event.location_event.location = Location.find_or_initialize_by(location_params)
     @event.location_event.location.update(location_params)

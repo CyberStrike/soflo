@@ -10,14 +10,14 @@
 .row
   .col-lg-8.col-lg-push-2
     h2.text-center#month
-      = link_to @display_month, date: Date.current
+      = link_to @display_month, date: Date.current, limit: 20
     h5.text-center
       ul.pagination
-        li = link_to date: @date.prev_week do
+        li = link_to date: @date.prev_week, limit: 20 do
           span.glyphicon.glyphicon-chevron-left
           = @date.prev_week.beginning_of_week.strftime('%b %d') +  ' - ' +  @date.prev_week.end_of_week.strftime('%d')
         /li = link_to 'Today', date: Date.current
-        li = link_to date: @date.next_week do
+        li = link_to date: @date.next_week, limit: 20 do
           = @date.next_week.beginning_of_week.strftime('%b %d') +  ' - ' +  @date.next_week.end_of_week.strftime('%d')
           span.glyphicon.glyphicon-chevron-right
     - unless @events_by_week.empty?
