@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.2.0'
 ruby '2.2.0'
 
 # Libraries
@@ -22,6 +22,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'awesome_print'
   gem 'better_errors' # Better Errors
   gem 'binding_of_caller' # Better Debugging
   gem 'quiet_assets' # Shhh.. we don't need to see the assets
