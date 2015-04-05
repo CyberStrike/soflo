@@ -14,10 +14,6 @@ class Location < ActiveRecord::Base
   end
 
   def to_s
-    if long_address
-      [name.to_s, long_address.to_s].join(', ')
-    else
-      ''
-    end
+    self.name ||= ''
   end
 end

@@ -72,7 +72,6 @@ class EventsController < ApplicationController
     @event.location_event.location = Location.find_or_initialize_by(location_params)
     @event.location_event.location.update(location_params)
 
-
     respond_to do |format|
       if @event.user == current_user && @event.update(event_params.except(:location))
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
