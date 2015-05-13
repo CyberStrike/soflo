@@ -5,7 +5,7 @@ context 'When a user signs up', :type => :feature do
 
   let!(:user){build(:user)}
 
-  badpass = Faker::Internet.password[0..rand(7)]
+  badpass = FFaker::Internet.password[0..rand(7)]
 
   before :each do
     visit '/'

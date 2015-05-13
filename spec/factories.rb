@@ -16,15 +16,15 @@ event nil
   end
 
   factory :user do
-    email{Faker::Internet.free_email}
-    password{Faker::Internet.password(min_length=8)}
+    email{FFaker::Internet.free_email}
+    password{FFaker::Internet.password(min_length=8)}
   end
 
   factory :event do
-    title{Faker::Name.first_name}
+    title{FFaker::Name.first_name}
     start{(DateTime.now + rand(100).days - rand(24).hours).at_beginning_of_minute}
     finish{(DateTime.now + rand(100).days - rand(24).hours).at_beginning_of_minute}
-    description{Faker::Lorem.paragraph}
+    description{FFaker::Lorem.paragraph}
   end
 
 end
