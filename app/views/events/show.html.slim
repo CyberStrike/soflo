@@ -1,7 +1,10 @@
 = content_for :title do
   = @event.title
 
-= hidden_field_tag "location", @event.location
+= hidden_field_tag 'location', @event.location
+
+- @colors.each do |color|
+  p{style="background:#{color}"} test
 
 .icon-container
   // Title

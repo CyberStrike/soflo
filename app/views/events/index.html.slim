@@ -7,10 +7,8 @@
       span.glyphicon.glyphicon-calendar
       |  Calendar
 
-
-
 .row
-  .col-lg-8.col-lg-push-2
+  .event-card-container
     h2.text-center#month
       = link_to @display_month, date: Date.current, limit: 20
     h5.text-center
@@ -37,10 +35,15 @@
         hr
         - day[1].each do |event|
           = link_to event do
-            p.text-center
-              = event.starttime.to_time.strftime('%I:%M %p') + " - " + event.title.to_s
+            .event-card style="background:#{assign_color(@colors)}"
+              p.title
+                = event.title.to_s
+              span
+                = event.starttime.to_time.strftime('%I:%M %p')
 
     - else
       .text-center
         h3.text-muted No Events this week. :(
         = link_to 'Add An Event', new_event_path, class: 'btn btn-success'
+
+

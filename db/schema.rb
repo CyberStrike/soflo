@@ -13,17 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20150323211739) do
 
-  create_table "events", force: true do |t|
-    t.string   "title"
+  create_table "events", force: :cascade do |t|
+    t.string   "title",       limit: 255
     t.datetime "start"
     t.datetime "finish"
-    t.string   "ticketurl"
+    t.string   "location",    limit: 255
+    t.string   "ticketurl",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "description"
   end
 
-  create_table "location_events", force: true do |t|
+  create_table "location_events", force: :cascade do |t|
     t.integer  "location_id"
     t.integer  "event_id"
     t.datetime "created_at"
@@ -33,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150323211739) do
   add_index "location_events", ["event_id"], name: "index_location_events_on_event_id"
   add_index "location_events", ["location_id"], name: "index_location_events_on_location_id"
 
-  create_table "locations", force: true do |t|
+  create_table "locations", force: :cascade do |t|
     t.string   "name"
     t.string   "streetnumber"
     t.string   "street"
@@ -47,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150323211739) do
     t.string   "long_address"
   end
 
-  create_table "user_events", force: true do |t|
+  create_table "user_events", force: :cascade do |t|
     t.integer  "user_id",    null: false
     t.integer  "event_id"
     t.datetime "created_at"
@@ -57,17 +58,17 @@ ActiveRecord::Schema.define(version: 20150323211739) do
   add_index "user_events", ["event_id"], name: "index_user_events_on_event_id"
   add_index "user_events", ["user_id"], name: "index_user_events_on_user_id"
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
