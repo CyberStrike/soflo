@@ -4,8 +4,9 @@ context 'When deleting an Event', :type => :feature do
 
   let!(:mario){create(:user)}
   let!(:luigi){create(:user)} # second user for testing
-  let!(:mario_event){create(:event, user: mario)}
-  let!(:luigi_event){create(:event, user: luigi)}
+  let!(:mushroom_kingdom) {create(:location)}
+  let!(:mario_event){create(:event, user: mario, location: mushroom_kingdom)}
+  let!(:luigi_event){create(:event, user: luigi, location: mushroom_kingdom)}
   let!(:event_mock){build(:event)}
 
   before :each do |e|
