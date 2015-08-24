@@ -1,18 +1,27 @@
 require 'ffaker'
 
-FactoryGirl.define do  factory :location_event do
+FactoryGirl.define do  
+
+  factory :organization do
+    name FFaker::Conference.name
+    about FFaker::Lorem.paragraph
+    url FFaker::Internet.http_url
+  end
+
+  factory :location_event do
     location nil
-event nil
+    event nil
   end
 
   factory :location do
     name "MyString"
-    streetnumber "MyString"
-    street "MyString"
-    city "MyString"
-    state "MyString"
-    zip "MyString"
-    country "MyString"
+    streetnumber FFaker::AddressUS.building_number
+    street FFaker::AddressUS.street_name
+    city FFaker::AddressUS.city
+    state FFaker::AddressUS.state
+    zip FFaker::AddressUS.zip_code
+    country FFaker::Address.country
+    long_address FFaker::Address.street_address
   end
 
   factory :user do
@@ -22,9 +31,11 @@ event nil
 
   factory :event do
     title{FFaker::Name.first_name}
-    start{(DateTime.now + rand(100).days - rand(24).hours).at_beginning_of_minute}
-    finish{(DateTime.now + rand(100).days - rand(24).hours).at_beginning_of_minute}
+    start{(DateTime.now + rand(1..100).days - rand(24).hours).at_beginning_of_minute}
+    finish{(DateTime.now + rand(1..100).days - rand(24).hours).at_beginning_of_minute}
     description{FFaker::Lorem.paragraph}
+    location
+    user
   end
 
 end

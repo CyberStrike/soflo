@@ -59,7 +59,8 @@ class EventsController < ApplicationController
     @event.user = current_user
     # Since we aren't using finish in the view at the moment set it to all day.
     @event.finish = @event.start.end_of_day
-    @event.build_location_event.location = Location.find_or_initialize_by(location_params)
+    @location = Location.find_or_initialize_by(location_params)
+    @event.build_location_event.location = @location
 
     respond_to do |format|
       if @event.save

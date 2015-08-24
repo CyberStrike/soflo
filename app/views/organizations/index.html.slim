@@ -1,0 +1,19 @@
+h1 Listing organizations
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @organizations.each do |organization|
+      tr
+        td = link_to 'Show', organization
+        td = link_to 'Edit', edit_organization_path(organization)
+        td = link_to 'Destroy', organization, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Organization', new_organization_path
