@@ -1,0 +1,34 @@
+= form_for @organization, :html => {class:'form'} do |f|
+  - if @organization.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@organization.errors.count, "error")} prohibited this organization from being saved:"
+      ul
+        - @organization.errors.full_messages.each do |message|
+          li = message
+
+  // URL
+  .icon-group
+    .icon
+    .icon-content
+      .form-group
+        = f.text_field :url, class:'form-control', placeholder:'Organization URL', tabindex: autoTabIndex
+
+  // Name
+  .icon-group
+    .icon
+    .icon-content
+      .form-group
+        = f.text_field :name, class:'form-control', placeholder:'Organization Name', tabindex: autoTabIndex
+
+  // About
+  .icon-group
+    .icon
+      i.glyphicon.glyphicon-info-sign
+    .icon-content
+      .form-group
+        = f.text_area :about, class:'form-control', placeholder:'A description of the organization', rows: 5, tabindex: autoTabIndex
+
+  .icon-group
+      .icon
+      .icon-content
+        = f.submit

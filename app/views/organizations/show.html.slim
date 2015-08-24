@@ -1,0 +1,17 @@
+p#notice = notice
+
+h2 Name
+.div
+  = link_to @organization.name, @organization.url
+
+h2 Description
+.div
+  = simple_format(@organization.about)
+
+h2 URL
+.div
+  = link_to @organization.url, @organization.url
+
+= link_to 'Edit', edit_organization_path(@organization)
+'|
+= link_to 'Back', organizations_path
