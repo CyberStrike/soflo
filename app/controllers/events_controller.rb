@@ -113,7 +113,7 @@ class EventsController < ApplicationController
     end
 
     def set_date
-      @date = params[:date] ? Date.parse(params[:date]): Date.current
+      @date = params[:date] ? Date.parse(params[:date]) : Date.current
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
