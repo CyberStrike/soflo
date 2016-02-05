@@ -15,6 +15,10 @@
 /log/*.log
 /tmp
 
+# Mac Dir Cache
+.DS_Store
+.ds_store
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
