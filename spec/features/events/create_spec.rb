@@ -26,13 +26,13 @@ context 'When creating an Event', :type => :feature do
     expect(page).to have_content event.description
   end
 
-  it 'it displays error without title of more than two characters' do
+  it 'it displays an error without a title of more than two characters' do
     fill_in 'event_title', with: 'a'
     click_on 'Save'
     expect(page).to have_content 'is too short (minimum is 2 characters)'
   end
 
-  it 'it displays error without description of more than 2 characters' do
+  it 'it displays an error without a description of more than 2 characters' do
     fill_in 'event_description', with: 'a'
     click_on 'Save'
     expect(page).to have_content 'is too short (minimum is 2 characters)'
@@ -59,28 +59,18 @@ context 'When creating an Event', :type => :feature do
     expect(page).to have_content 'No Time Traveling Allowed'
   end
 
-  it 'it can create a repeating event' do
-    skip
-  end
+  it 'can create a repeating event'
 
-  it 'it can create a daily repeating event' do
-    skip
-  end
+  it 'it can create a repeating event'
 
-  it 'it can create a weekly repeating event' do
-    skip
-  end
+  it 'it can create a daily repeating event'
 
-  it 'it can create a monthly repeating event' do
-    skip
-  end
+  it 'it can create a weekly repeating event'
 
-  it 'a user must be logged in to create an event' do
-    skip
-  end
+  it 'it can create a monthly repeating event'
 
-  it 'belongs to user' do
-    skip
-  end
+  it 'a user must be logged in to create an event'
+
+  it 'belongs to user'
 
 end

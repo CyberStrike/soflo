@@ -12,16 +12,16 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :location_event
 
   validates :title,
-    presence: true,
-    length:{minimum: 2}
+            presence: true,
+            length:{  minimum: 2}
   validates :description,
-    presence: true,
-    length:{minimum: 2}
+            presence: true,
+            length:{  minimum: 2}
   validates :start,
-    presence: true
+            presence: true
   validate :start_time_not_in_past
   validates :finish,
-    presence: true
+            presence: true
 
   scope :this_week, -> { where(:start => Date.current.beginning_of_week..Date.current.end_of_week ) }
 
