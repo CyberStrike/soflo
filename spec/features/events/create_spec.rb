@@ -2,8 +2,8 @@ require 'rails_helper'
 
 context 'When creating an Event', :type => :feature do
 
-  let!(:user){create(:user)}
-  let!(:event){build(:event, user: user)}
+  let!(:user){  create(:user)}
+  let!(:event){ build(:event, user: user)}
 
   before :each do
     login_as user
