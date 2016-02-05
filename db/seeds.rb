@@ -14,7 +14,7 @@ def create_event(user)
     FactoryGirl.create :event, {user: user}
   end
 
-  puts "\n100 Events Seeded for #{user.email}"
+  puts "\n100 Events Seeded for #{user.email} \n"
 
 end
 
@@ -28,7 +28,7 @@ def seed_events
 
   else
 
-    puts '\nCould not find an existing user'
+    puts "\nCould not find an existing user"
 
     user = FactoryGirl.create :user, {email: 'user@example.com', password: '1234567890'}
 

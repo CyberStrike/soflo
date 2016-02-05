@@ -9,6 +9,7 @@ class Location < ActiveRecord::Base
   def cityState
     self.city + ', ' + self.state
   end
+
   def googlemapsurl
     'http://maps.google.com/?q=' + self.long_address
   end

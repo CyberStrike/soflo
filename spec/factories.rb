@@ -1,30 +1,34 @@
 require 'ffaker'
 
-FactoryGirl.define do  factory :location_event do
+FactoryGirl.define do
+
+  factory :location_event do
     location nil
-event nil
+    event nil
   end
 
   factory :location do
-    name "MyString"
-    streetnumber "MyString"
-    street "MyString"
-    city "MyString"
-    state "MyString"
-    zip "MyString"
-    country "MyString"
+            name{ FFaker::Company.name }
+    streetnumber{ rand(9999) }
+          street{ FFaker::AddressUS.street_name }
+            city{ FFaker::AddressUS.city }
+           state{ FFaker::AddressUS.state_abbr }
+             zip{ FFaker::AddressUS.zip_code }
+          country 'US'
+    long_address{ "#{streetnumber} #{street} #{city} #{state}" }
   end
 
   factory :user do
-    email{FFaker::Internet.free_email}
-    password{FFaker::Internet.password(min_length=8)}
+          email{ FFaker::Internet.free_email }
+       password{ FFaker::Internet.password(min_length=8) }
   end
 
   factory :event do
-    title{FFaker::Name.first_name}
-    start{(DateTime.now + rand(100).days - rand(24).hours).at_beginning_of_minute}
-    finish{(DateTime.now + rand(100).days - rand(24).hours).at_beginning_of_minute}
-    description{FFaker::Lorem.paragraph}
+          title{ FFaker::Name.first_name }
+          start{ (DateTime.now + rand(100).days - rand(24).hours).at_beginning_of_minute }
+         finish{ (DateTime.now + rand(100).days - rand(24).hours).at_beginning_of_minute }
+    description{ FFaker::Lorem.paragraph }
+       location{ FactoryGirl.create :location  }
   end
 
 end
