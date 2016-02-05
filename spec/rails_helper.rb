@@ -5,6 +5,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'spec_helper'
 require 'capybara/rails'
 require 'rspec/rails'
+require 'devise'
 include Warden::Test::Helpers
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -47,5 +48,9 @@ RSpec.configure do |config|
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
+
+  # Devise
+  config.include Devise::TestHelpers, :type => :controller
+
 end
 

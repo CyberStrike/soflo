@@ -2,6 +2,12 @@ require 'ffaker'
 
 FactoryGirl.define do
 
+  factory :organization do
+            name{ FFaker::Conference.name }
+           about{ FFaker::Lorem.paragraph }
+             url{ FFaker::Internet.http_url}
+  end
+
   factory :location_event do
     location nil
     event nil
