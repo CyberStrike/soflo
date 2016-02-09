@@ -2,7 +2,6 @@ $not-quite-white: #f7f7f7
 $font-size-base: 16px
 
 @import "bootstrap-sprockets", "bootstrap", "events", "buttons"
-@import "://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"
 
 html
   font-size: 16px
@@ -65,3 +64,6 @@ td
   line-height: 1.5
   color: #777
   border-top: 1px solid #eee
+
+.path-debug
+  content: twbs-font-path('#{$icon-font-path}#{$icon-font-name}.ttf')
