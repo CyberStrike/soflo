@@ -26,8 +26,8 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new(
-        start:  (Time.now + 1.hour).beginning_of_hour,
-        finish: (Time.now + 2.hour).beginning_of_hour)
+        start:  (DateTime.now + 1.hour).beginning_of_hour,
+        finish: (DateTime.now + 2.hour).beginning_of_hour)
     @location = @event.build_location_event.build_location
 
   end
@@ -43,8 +43,14 @@ class EventsController < ApplicationController
   def create
 
     @event = Event.new(event_params.except(:location))
-5
+
     @event.user = current_user
+
+    # Set Finish Date to Start Date with Time Zone
+    # Or else we time travel which is bad.
+    finish_time = @event.start.to_date.to_s + ' ' + @event.finish.strftime('%I:%M %p')
+    @event.finish = Time.zone.parse(finish_time)
+
 
     # Since we aren't using finish in the view at the moment set it to all day.
     # @event.finish = @event.start.end_of_day
@@ -52,8 +58,6 @@ class EventsController < ApplicationController
     @event.build_location_event.location = @location
 
     respond_to do |format|
-
-      logger.debug @event.inspect
 
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
