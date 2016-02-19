@@ -38,16 +38,16 @@ context 'When creating an Event', :type => :feature do
     expect(page).to have_content 'is too short (minimum is 2 characters)'
   end
 
-  it 'can set a future date' do
+  it 'can set a future date', js: true do
     event_defaults
     # select_date_and_time(event.start, from: 'event_start')
-    # select_date_and_time(event.finish, from: 'event_finish')
+    # select_date_and_time
+    select_date(event.start, from: 'event_start')
     select_time(event.start, from: 'event_start')
     select_time(event.finish, from: 'event_finish')
-    select_date(event.start, from: 'event_start')
     click_on 'Save'
     expect(page).to have_content event.start.strftime('%a, %b %d, %Y')
-    expect(page).to have_content event.start.strftime('%I:%M %P') + ' - ' + event.finish.strftime('%I:%M %p')
+    expect(page).to have_content event.start.strftime('%I:%M %p') + ' - ' + event.finish.strftime('%I:%M %p')
   end
 
   it 'can not set a past start date' do

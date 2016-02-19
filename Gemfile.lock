@@ -72,6 +72,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     daemons (1.2.3)
+    database_cleaner (1.5.1)
     debug_inspector (0.0.2)
     devise (3.5.6)
       bcrypt (~> 3.0)
@@ -254,6 +255,7 @@ DEPENDENCIES
   bootstrap-sass
   capybara
   coffee-rails (~> 4.0.0)
+  database_cleaner
   devise
   factory_girl_rails
   ffaker

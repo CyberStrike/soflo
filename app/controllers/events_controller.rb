@@ -43,13 +43,18 @@ class EventsController < ApplicationController
   def create
 
     @event = Event.new(event_params.except(:location))
+5
     @event.user = current_user
+
     # Since we aren't using finish in the view at the moment set it to all day.
     # @event.finish = @event.start.end_of_day
     @location = Location.find_or_initialize_by(location_params)
     @event.build_location_event.location = @location
 
     respond_to do |format|
+
+      logger.debug @event.inspect
+
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }

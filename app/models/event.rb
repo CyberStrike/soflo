@@ -14,13 +14,18 @@ class Event < ActiveRecord::Base
   validates :title,
             presence: true,
             length:{  minimum: 2}
+
   validates :description,
             presence: true,
             length:{  minimum: 2}
+
   validates :start,
             presence: true
-  validate :start_time_not_in_past
-  validate :finish_time_in_future
+
+  validate  :start_time_not_in_past
+
+  validate  :finish_time_in_future
+
   validates :finish,
             presence: true
 
@@ -51,6 +56,7 @@ class Event < ActiveRecord::Base
       end
     end
   end
+
   def initialize_user_event
     build_user_event(user: self.user)
   end

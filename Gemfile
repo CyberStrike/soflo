@@ -19,6 +19,7 @@ group :development, :test do
   gem 'ffaker' # Random Fake Info
   gem 'shoulda-matchers' # Model Testing Help for Rspec
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 group :development do

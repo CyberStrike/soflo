@@ -32,7 +32,7 @@ FactoryGirl.define do
   factory :event do
           title{ FFaker::Name.first_name }
           start{ (DateTime.now + rand(1..100).days - rand(24).hours).at_beginning_of_minute }
-         finish{ (DateTime.now + rand(1..100).days - rand(24).hours).at_beginning_of_minute }
+         finish{ start + 1.hour }
     description{ FFaker::Lorem.paragraph }
        location{ FactoryGirl.create :location  }
   end
