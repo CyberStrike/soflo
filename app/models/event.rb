@@ -20,6 +20,7 @@ class Event < ActiveRecord::Base
   validates :start,
             presence: true
   validate :start_time_not_in_past
+  validate :finish_time_in_future
   validates :finish,
             presence: true
 
@@ -43,6 +44,13 @@ class Event < ActiveRecord::Base
     end
   end
 
+  def finish_time_in_future
+    if finish
+      if self.finish < self.start
+        errors.add :finish, 'An Event Cannot Finish Before It Has Started.'
+      end
+    end
+  end
   def initialize_user_event
     build_user_event(user: self.user)
   end

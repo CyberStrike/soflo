@@ -9,7 +9,7 @@ html lang='en'
   head
     title
       - if content_for? :title
-        = yield :title
+        | SoFlo Alpha - #{yield :title}
       - else
         | SoFlo Alpha
 
@@ -19,6 +19,8 @@ html lang='en'
     = csrf_meta_tags
 
   body id=params[:controller] class=params[:action]
+    .path-debug
+
     = render 'partial/nav'
 
 

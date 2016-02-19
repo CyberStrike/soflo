@@ -25,10 +25,15 @@ context 'When editing an Event', :type => :feature do
     fill_in 'event_title', with: event_mock.title
     fill_in 'event_description', with: event_mock.description
     select_time(event_mock.start, from: 'event_start')
+    select_time(event_mock.finish, from: 'event_finish')
     select_date(event_mock.start, from: 'event_start')
     click_on 'Save'
-    expect(page).to have_content event_mock.start.strftime('%a, %b %d, %Y, %I:%M %P')
+    # expect(page).to have_content event_mock.start.strftime('%a, %b %d, %Y, %I:%M %P')
     # expect(page).to have_content event_mock.finish.strftime('%a, %b %d, %Y, %I:%M %P')
+
+    expect(page).to have_content event_mock.start.strftime('%a, %b %d, %Y')
+    expect(page).to have_content event_mock.start.strftime('%I:%M %P') + ' - ' + event_mock.finish.strftime('%I:%M %p')
+
     expect(page).to have_content event_mock.description
   end
 

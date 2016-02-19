@@ -6,7 +6,6 @@
     = link_to calendar_path, class: 'btn btn-info' do
       span.glyphicon.glyphicon-calendar
       |  Calendar
-
 .row
   .event-card-container
     h2.text-center#month
@@ -25,7 +24,7 @@
         hr
         - case day[0]
           - when Date.current
-            p.text-muted.text-center = "Today (#{day[0].strftime('%a, %b %d, %Y')})"
+            p.text-muted.text-center = "Today ( #{day[0].strftime('%a, %b %d')} )"
           - when Date.current.tomorrow
             p.text-muted.text-center = "Tomorrow (#{day[0].strftime('%a, %b %d, %Y')})"
           - when Date.current.yesterday
@@ -39,11 +38,9 @@
               p.title
                 = event.title.to_s
               span
-                = event.starttime.to_time.strftime('%I:%M %p')
+                = "#{event.starttime.to_time.strftime('%I:%M %p')} - #{event.finish.to_time.strftime('%I:%M %p')}"
 
     - else
       .text-center
         h3.text-muted No Events this week. :(
         = link_to 'Add An Event', new_event_path, class: 'btn btn-success'
-
-

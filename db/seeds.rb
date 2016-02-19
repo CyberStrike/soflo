@@ -32,7 +32,7 @@ def seed_events
 
     user = FactoryGirl.create :user, {email: 'user@example.com', password: '1234567890'}
 
-    puts "\nCreated u: #{user.email}, p: 1234567890"
+    puts "\nCreated u: #{user.email}, p: #{user.password}"
 
     create_event(user)
 

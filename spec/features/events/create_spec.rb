@@ -43,12 +43,14 @@ context 'When creating an Event', :type => :feature do
     # select_date_and_time(event.start, from: 'event_start')
     # select_date_and_time(event.finish, from: 'event_finish')
     select_time(event.start, from: 'event_start')
+    select_time(event.finish, from: 'event_finish')
     select_date(event.start, from: 'event_start')
     click_on 'Save'
-    expect(page).to have_content event.start.strftime('%a, %b %d, %Y, %I:%M %P')
+    expect(page).to have_content event.start.strftime('%a, %b %d, %Y')
+    expect(page).to have_content event.start.strftime('%I:%M %P') + ' - ' + event.finish.strftime('%I:%M %p')
   end
 
-  it 'can not set a a past date' do
+  it 'can not set a past start date' do
     fill_in 'event_title', with: event.title
     fill_in 'event_description', with: event.description
     # select_date_and_time(DateTime.now - 10.days, from: 'event_start')
@@ -57,6 +59,16 @@ context 'When creating an Event', :type => :feature do
     select_date(Date.current - 10.days, from: 'event_start')
     click_on 'Save'
     expect(page).to have_content 'No Time Traveling Allowed'
+  end
+
+  it 'can not create an event that finishes before the start' do
+    fill_in 'event_title', with: event.title
+    fill_in 'event_description', with: event.description
+    select_time(event.start, from: 'event_start')
+    select_time(event.start - 1.hour, from: 'event_finish')
+    select_date(event.start, from: 'event_start')
+    click_on 'Save'
+    expect(page).to have_content 'An Event Cannot Finish Before It Has Started.'
   end
 
   it 'can create a repeating event'

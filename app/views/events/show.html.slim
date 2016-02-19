@@ -5,24 +5,26 @@
 
 .icon-container
   // Title
-  .icon-group
+  .icon-group#Title
     .icon
     .icon-content
       h3 = @event.title
   // DateTime
-  .icon-group
+  .icon-group#Date
     .icon
       i.glyphicon.glyphicon-calendar
     .icon-content
       - case @event.start.to_date
         - when Date.current
-          = "Today (#{@event.start.strftime('%I:%M %P')})"
+          = "Today (#{@event.start.strftime('%a, %d')})"
         - when Date.current.tomorrow
-          = "Tomorrow (#{@event.start.strftime('%a, %b %d, %Y, %I:%M %P')})"
+          = "Tomorrow (#{@event.start.strftime('%a, %d')})"
         - when Date.current.yesterday
-          = "Yesterday (#{@event.start.strftime('%a, %b %d, %Y, %I:%M %P')})"
+          = "Yesterday (#{@event.start.strftime('%a, %d')})"
+        - when (Date.current.year != @event.start.to_date.year)
+          = @event.start.strftime('%a, %b %d, %Y')
         - else
-          = @event.start.strftime('%a, %b %d, %Y, %I:%M %P')
+          = @event.start.strftime('%a, %b %d, %Y')
       // Not showing end DateTime because it doesn't look right at the moment.
       // TODO: If same day just show end time(Today 7:00pm - 9:00pm ), if next day in AM (Today, 4:00pm - 1:00am) , if next day in pm (Today, 4:00pm - Tomorrow 1:00pm)
       /p
@@ -36,8 +38,14 @@
             = "Yesterday (#{@event.finish.strftime('%a, %b %d, %Y, %I:%M %P')})"
           - else
             = @event.finish.strftime('%a, %b %d, %Y, %I:%M %P')
+  // Time
+  .icon-group#Time
+    .icon
+      i.glyphicon.glyphicon-time
+    .icon-content
+      = @event.start.strftime('%I:%M %P') + ' - ' + @event.finish.strftime('%I:%M %p')
   // Location
-  .icon-group
+  .icon-group#Location
     .icon
       i.glyphicon.glyphicon-map-marker
     .icon-content
@@ -48,13 +56,13 @@
 
   // Tickets
   - if @event.ticketurl.present?
-    .icon-group
+    .icon-group#Tickets
       .icon
         i.glyphicon.glyphicon-qrcode
       .icon-content
         = link_to @event.ticketurl, @event.ticketurl
   // Description
-  .icon-group
+  .icon-group#Description
     .icon
       i.glyphicon.glyphicon-info-sign
     .icon-content
