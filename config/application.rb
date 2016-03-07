@@ -26,5 +26,19 @@ module Soflo
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # config.action_controller.asset_host = Proc.new { |source, request|
+    #   if request && request.ssl?
+    #     "#{request.protocol}#{request.host_with_port}"
+    #   else
+    #     "#{request.protocol}assets.example.com"
+    #   end
+    # }
+
+    config.action_controller.asset_host = Proc.new { |source, request|
+      if request
+        "#{request.protocol}#{request.host_with_port}"
+      end
+    }
   end
 end
