@@ -38,7 +38,7 @@ context 'When creating an Event', :type => :feature do
     expect(page).to have_content 'is too short (minimum is 2 characters)'
   end
 
-  it 'can set a future date', js: true do
+  it 'can set a future date' do
     event_defaults
     # select_date_and_time(event.start, from: 'event_start')
     # select_date_and_time
@@ -71,8 +71,6 @@ context 'When creating an Event', :type => :feature do
     expect(page).to have_content 'An Event Cannot Finish Before It Has Started.'
   end
 
-  it 'can create a repeating event'
-
   it 'it can create a repeating event'
 
   it 'it can create a daily repeating event'
@@ -83,6 +81,6 @@ context 'When creating an Event', :type => :feature do
 
   it 'a user must be logged in to create an event'
 
-  it 'belongs to user'
+  it 'it belongs to user'
 
 end
