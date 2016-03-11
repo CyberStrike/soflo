@@ -50,10 +50,10 @@
     font-size: 2em
 
 .icon-container
-  @extend .col-xs-12
-  @extend .col-sm-8
-  @extend .col-md-6
-  @extend .col-lg-5
+  @include make-xs-column(12)
+  @include make-sm-column(8)
+  @include make-md-column(6)
+  @include make-lg-column(5)
   @include center-block
   float: none
   background: white
@@ -80,7 +80,7 @@
     padding-right: 15px
     padding-left: 15px
     margin-left: -5px
-    ma
+    margin-top: 5px
 
   .icon-content
     float: left
@@ -88,7 +88,7 @@
     min-height: 1px
     padding-right: 15px
     padding-left: 15px
-    width: 17rem
+    width: 19rem
     @media (min-width: $screen-xs )
       width: 90%
     @media (min-width: $screen-sm )

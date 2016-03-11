@@ -24,8 +24,15 @@ $(document).on 'ready page:load', ->
 
       location = locationAdapter(place)
 
-      $('#location_addr').html(
-          "<h4>#{place.name}</h4>" + "<p>#{location.streetAddr()}" + "#{ if location.unit? then (' #' + location.unit) else '' }" + "<br>" + "#{location.city + ', ' + location.state}</p>")
+      locationHtml =  """
+                        <h4>#{place.name}</h4>
+                        <p>
+                          #{location.streetAddr()} #{ if location.unit? then (' #' + location.unit) else '' }
+                          <br> #{location.city + ', ' + location.state}
+                        </p>
+                      """
+
+      $('#location_addr').html(locationHtml)
 
       addMap($('#location_map'), place)
       setLocationInfo(location)

@@ -1,13 +1,15 @@
 [![Stories in Ready](https://badge.waffle.io/CyberStrike/soflo.svg?label=ready&title=Ready)](http://waffle.io/CyberStrike/soflo)
 
-## SoFlo
+## Cortadito
 
 Smart Event Calendar for the Miami Tech Community
 
 #### Heroku - [Obscure Everglades](http://obscure-everglades-1980.herokuapp.com)
 
 ### Dev Setup
+
 ---
+
 ```Shell
 rake db:seed
 ```

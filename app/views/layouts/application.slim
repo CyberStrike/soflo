@@ -9,9 +9,9 @@ html lang='en'
   head
     title
       - if content_for? :title
-        | SoFlo Alpha - #{yield :title}
+        | Cortadito Alpha - #{yield :title}
       - else
-        | SoFlo Alpha
+        | Cortadito Alpha
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -23,16 +23,15 @@ html lang='en'
 
     = render 'partial/nav'
 
-
-    /.text-center
+    .text-center
       .alert.alert-warning
         span.close data-dismiss="alert"
           span aria-hidden="true"
             | &times;
         .message
-          | Welcome to SoFlo South Floridas Tech Board.
-          | We are currently in alpha testing so please pardon the mess.
-          a href="https://github.com/CyberStrike/soflo" - Team SoFlo
+          | Welcome to Cortadito South Floridas Tech Board.
+          | We are currently in testing so please pardon the mess.
+          a href="https://github.com/CyberStrike/soflo" - Team Cortadito
 
     .container
       - unless flash.empty?

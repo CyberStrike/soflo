@@ -1,4 +1,4 @@
-nav.navbar.navbar-soflo role="navigation"
+nav.navbar.navbar-Cortadito role="navigation"
   .container-fluid
     .navbar-header
       button.navbar-toggle.collapsed data-target="#menu" data-toggle="collapse" type="button"
@@ -8,7 +8,7 @@ nav.navbar.navbar-soflo role="navigation"
         span.icon-bar
       /- if (request['controller'] == 'events') & (request['action'] == 'index')
       - if request['action'] == 'index'
-        = link_to 'SoFlo Alpha', root_path, class: 'navbar-brand'
+        = link_to 'Cortadito Alpha', root_path, class: 'navbar-brand'
       - elsif request['action'] == 'edit'
         = link_to :back, class: 'navbar-brand' do
           span.glyphicon.glyphicon-menu-left

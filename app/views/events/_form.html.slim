@@ -73,9 +73,9 @@
     .icon-content
       /- if request.path.include? 'edit'
       - if current_page?(controller: :events, action: 'edit', id: (params[:id] || ''))
-        .btn-group-soflo
-          = f.submit 'Save', class:'btn btn-left-soflo btn-success'
-          = link_to @event, class: 'btn btn-right-soflo btn-danger', name: 'delete',data: {:confirm => 'Are you sure?'}, method: :delete do
+        .btn-group-Cortadito
+          = f.submit 'Save', class:'btn btn-left-Cortadito btn-success'
+          = link_to @event, class: 'btn btn-right-Cortadito btn-danger', name: 'delete',data: {:confirm => 'Are you sure?'}, method: :delete do
             .glyphicon.glyphicon-trash
       - else
         = f.submit 'Save', class: 'btn btn-block btn-success'
