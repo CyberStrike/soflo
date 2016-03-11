@@ -9,9 +9,9 @@ html lang='en'
   head
     title
       - if content_for? :title
-        | Cortadito Alpha - #{yield :title}
+        | Cortadito - #{yield :title}
       - else
-        | Cortadito Alpha
+        | Cortadito
 
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
