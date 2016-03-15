@@ -20,15 +20,15 @@ group :development, :test do
   gem 'shoulda-matchers' # Model Testing Help for Rspec
   gem 'selenium-webdriver'
   gem 'database_cleaner'
+  gem 'pry-byebug' # Break in console
+  gem 'pry-rails'
+  gem 'awesome_print'
 end
 
 group :development do
-  gem 'awesome_print'
   gem 'better_errors' # Better Errors
   gem 'binding_of_caller' # Better Debugging
   gem 'quiet_assets' # Shhh.. we don't need to see the assets
-  gem 'pry-byebug' # Break in console
-  gem 'pry-rails'
 end
 
 group :production do

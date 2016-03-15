@@ -65,7 +65,7 @@ context 'When creating an Event', :type => :feature do
     fill_in 'event_title', with: event.title
     fill_in 'event_description', with: event.description
     select_time(event.start, from: 'event_start')
-    select_time(event.start - 1.hour, from: 'event_finish')
+    select_time(event.start - 2.hour, from: 'event_finish')
     select_date(event.start, from: 'event_start')
     click_on 'Save'
     expect(page).to have_content 'An Event Cannot Finish Before It Has Started.'

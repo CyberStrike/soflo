@@ -7,6 +7,9 @@ require 'capybara/rails'
 require 'rspec/rails'
 require 'devise'
 require 'database_cleaner'
+require 'pry-byebug'
+require 'awesome_print'
+
 include Warden::Test::Helpers
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
