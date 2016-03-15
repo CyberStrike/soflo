@@ -51,9 +51,6 @@ class EventsController < ApplicationController
     finish_time = @event.start.to_date.to_s + ' ' + @event.finish.strftime('%I:%M %p')
     @event.finish = Time.zone.parse(finish_time)
 
-
-    # Since we aren't using finish in the view at the moment set it to all day.
-    # @event.finish = @event.start.end_of_day
     @location = Location.find_or_initialize_by(location_params)
     @event.build_location_event.location = @location
 
@@ -75,6 +72,9 @@ class EventsController < ApplicationController
 
     @event.location_event.location = Location.find_or_initialize_by(location_params)
     @event.location_event.location.update(location_params)
+
+    finish_time = @event.start.to_date.to_s + ' ' + @event.finish.strftime('%I:%M %p')
+    @event.finish = Time.zone.parse(finish_time)
 
     respond_to do |format|
       if @event.user == current_user && @event.update(event_params.except(:location))
