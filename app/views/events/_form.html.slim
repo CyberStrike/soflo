@@ -24,6 +24,7 @@
 
         = f.time_select :start, {ampm: true}, tabindex: autoTabIndex
         | –
+        span.break-xs
         = f.time_select :finish, {ampm: true}, tabindex: autoTabIndex
   // Date
   .icon-group
@@ -32,6 +33,7 @@
     .icon-content
       .form-group
         = f.date_select :start, {start_year: Date.today.year}, tabindex: autoTabIndex
+
   // Location
   .icon-group
     .icon
