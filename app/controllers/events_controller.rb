@@ -6,9 +6,9 @@ class EventsController < ApplicationController
 
   def index
     # Lets just show the next 20 events and worry about proper navigation sorting another time.
-    @events_by_week = Event.where('start > ?', @date).order(:start).limit(params[:limit]).group_by(&:startdate)
+    @events_by_week = Event.where('start > ?', @date).order(:start).limit(params[:limit]).group_by(&:start_date)
 
-    # @events_by_week = Event.where(:start => @date.yesterday..@date.at_end_of_week + 1.day).order(:start).group_by(&:startdate) || Event.this_week.order(:start).group_by(&:startdate)
+    # @events_by_week = Event.where(:start => @date.yesterday..@date.at_end_of_week + 1.day).order(:start).group_by(&:start_date) || Event.this_week.order(:start).group_by(&:start_date)
 
     ## display variables
 
@@ -18,7 +18,7 @@ class EventsController < ApplicationController
 
   def calendar
     @events = Event.all
-    @events_by_date = @events.group_by &:startdate
+    @events_by_date = @events.group_by &:start_date
   end
 
   def show

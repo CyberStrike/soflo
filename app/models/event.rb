@@ -32,18 +32,25 @@ class Event < ActiveRecord::Base
 
   scope :this_week, -> { where(:start => Date.current.beginning_of_week..Date.current.end_of_week ) }
 
-  def startdate
+  def start_date
     start.to_date
   end
 
-  def starttime
+  def start_time
     start.strftime('%H:%M')
   end
+  def finish_date
+    finish.to_date
+  end
+
+  def finish_time
+    finish.strftime('%H:%M')
+  end
+
 
   # Set Finish Date to Start Date with Time Zone
   # Or else we time travel which is bad.
   def set_finish_date
-    awesome_print self
     if self.start.to_date != self.finish.to_date
       finish_time = self.start.to_date.to_s + ' ' + self.finish.strftime('%I:%M %p')
       self.finish = Time.zone.parse(finish_time)
