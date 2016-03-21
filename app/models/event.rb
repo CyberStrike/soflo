@@ -42,8 +42,8 @@ class Event < ActiveRecord::Base
 
   # Set Finish Date to Start Date with Time Zone
   # Or else we time travel which is bad.
-
   def set_finish_date
+    awesome_print self
     if self.start.to_date != self.finish.to_date
       finish_time = self.start.to_date.to_s + ' ' + self.finish.strftime('%I:%M %p')
       self.finish = Time.zone.parse(finish_time)
