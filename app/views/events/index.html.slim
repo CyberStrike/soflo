@@ -38,7 +38,7 @@
               p.title
                 = event.title.to_s
               span
-                = "#{event.start.to_time.strftime('%I:%M %p')} - #{event.finish.to_time.strftime('%I:%M %p')}"
+                = "#{event.start.strftime('%I:%M %p')} - #{event.finish.strftime('%I:%M %p')}"
     - else
       .text-center
         h3.text-muted No Events this week. :(
