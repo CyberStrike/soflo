@@ -43,13 +43,7 @@ class EventsController < ApplicationController
   def create
 
     @event = Event.new(event_params.except(:location))
-
     @event.user = current_user
-
-    # Set Finish Date to Start Date with Time Zone
-    # Or else we time travel which is bad.
-    finish_time = @event.start.to_date.to_s + ' ' + @event.finish.strftime('%I:%M %p')
-    @event.finish = Time.zone.parse(finish_time)
 
     @location = Location.find_or_initialize_by(location_params)
     @event.build_location_event.location = @location
@@ -68,13 +62,13 @@ class EventsController < ApplicationController
   end
 
   def update
+
+    # Creates a valid Event Location
     @location = @event.location || @event.build_location_event.build_location
 
+    # If the location exists use else make a new one
     @event.location_event.location = Location.find_or_initialize_by(location_params)
     @event.location_event.location.update(location_params)
-
-    finish_time = @event.start.to_date.to_s + ' ' + @event.finish.strftime('%I:%M %p')
-    @event.finish = Time.zone.parse(finish_time)
 
     respond_to do |format|
       if @event.user == current_user && @event.update(event_params.except(:location))

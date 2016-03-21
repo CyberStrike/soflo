@@ -20,6 +20,7 @@ context 'When deleting an Event', :type => :feature do
   it 'a user must be logged in to destroy an event', skip_before: true do
     visit edit_event_path(mario_party)
     expect(page).to have_content 'Log in'
+    expect(page).not_to have_button 'Edit'
   end
 
   it 'a user can only destroy their own events' do
