@@ -1,7 +1,25 @@
-= content_for :title do
+= content_for :title
   = @event.title
 
+= content_for :meta_tags do
+  /facebook open graph tags
+  meta property="og:type" content="event"
+  meta property="og:url" content= url_for([@event, only_path: false])
+  meta property="og:title" content= @event.title
+  meta property="og:description" content= @event.description
+
+  /twitter card tags additive with the og: tags
+  meta name="twitter:domain" value= request.host
+  meta name="twitter:title" value= @event.title
+  meta name="twitter:description" value= @event.description
+  meta name="twitter:url" value= root_url
+  meta name="twitter:label1" value="When"
+  meta name="twitter:data1" value= (@event.start.strftime('%a, %b %d') +' '+ @event.start.strftime('%I:%M %p') + ' - ' + @event.finish.strftime('%I:%M %p'))
+  meta name="twitter:label2" value="Where"
+  meta name="twitter:data2" value=(@event.location.streetAddress+', '+@event.location.cityState)
+
 = hidden_field_tag 'location', @event.location
+
 
 .icon-container
   // Title

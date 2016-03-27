@@ -1,12 +1,13 @@
 html lang='en'
-
-  meta charset="utf-8"
-  meta content="IE=edge" http-equiv="X-UA-Compatible"
-  meta content="width=device-width, initial-scale=1" name="viewport"
-  meta content="A simple app to keep track of South Florida Tech" name="description"
-  meta content="Chris Scott" name="author"
-
   head
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    meta content="A simple app to keep track of South Florida Tech" name="description"
+    meta content="Chris Scott" name="author"
+    - if content_for? :meta_tags
+      = yield :meta_tags
+
     title
       - if content_for? :title
         | Cortadito - #{yield :title}
@@ -19,7 +20,6 @@ html lang='en'
     = csrf_meta_tags
 
   body id=params[:controller] class=params[:action]
-    .path-debug
 
     = render 'partial/nav'
 
