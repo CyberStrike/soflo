@@ -1,23 +1,30 @@
 html lang='en'
   head
-    meta charset="utf-8"
-    meta content="IE=edge" http-equiv="X-UA-Compatible"
-    meta content="width=device-width, initial-scale=1" name="viewport"
-    meta content="A simple app to keep track of South Florida Tech" name="description"
-    meta content="Chris Scott" name="author"
-    - if content_for? :meta_tags
-      = yield :meta_tags
-
     title
       - if content_for? :title
         | Cortadito - #{yield :title}
       - else
         | Cortadito
 
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="description" content="A simple app to keep track of South Florida Tech"
+    meta name="author" content="Chris Scott"
+
+    // Defaults
+    meta value="twitter:site" content="@CortaditioMiami"
+    meta name="twitter:card" content="summary"
+    meta property="og:site_name" content="Cortadito.Miami"
+
+    - if content_for? :meta_tags
+      = yield :meta_tags
+
+    = csrf_meta_tags
+
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places', 'data-turbolinks-track' => true
-    = csrf_meta_tags
 
   body id=params[:controller] class=params[:action]
 

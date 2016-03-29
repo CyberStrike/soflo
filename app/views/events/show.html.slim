@@ -7,6 +7,9 @@
   meta property="og:url" content= url_for([@event, only_path: false])
   meta property="og:title" content= @event.title
   meta property="og:description" content= @event.description
+  / FB Open Graph wants DateTime in iso8601
+  meta property="og:updated_time" content= @event.updated_at.iso8601
+  meta property="og:start_time" content= @event.start.iso8601
 
   /twitter card tags additive with the og: tags
   meta name="twitter:domain" value= request.host
