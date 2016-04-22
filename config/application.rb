@@ -35,6 +35,9 @@ module Soflo
     #   end
     # }
 
+    # Turns off the asset pipleline log
+    config.quiet_assets = false
+
     config.action_controller.asset_host = Proc.new { |source, request|
       if request
         "#{request.protocol}#{request.host_with_port}"

@@ -17,8 +17,8 @@ html lang='en'
     meta name="twitter:card" content="summary"
     meta property="og:site_name" content="Cortadito.Miami"
 
-    - if content_for? :meta_tags
-      = yield :meta_tags
+    - if content_for? :event_meta_tags
+      = yield :event_meta_tags
 
     = csrf_meta_tags
 

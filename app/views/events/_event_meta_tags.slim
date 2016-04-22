@@ -1,0 +1,23 @@
+= content_for :event_meta_tags do
+
+  /! Facebook Open Graph
+  meta property="og:type" content="event"
+  meta property="og:url" content= url_for([@event, only_path: false])
+  meta property="og:title" content= @event.title
+  meta property="og:description" content= @event.description
+
+  / FB Open Graph wants DateTime in iso8601
+  meta property="og:updated_time" content= @event.updated_at.iso8601
+  meta property="og:start_time" content= @event.start.iso8601
+
+  /! Twitter Card
+  meta name="twitter:domain" value= request.host
+  meta name="twitter:url" value= root_url
+
+  // https://dev.twitter.com/cards/markup#twitter-titler
+  meta name="twitter:title" value= truncate(@event.title, :length => 70)
+  meta name="twitter:description" value= @event.description
+  meta name="twitter:label1" value="When"
+  meta name="twitter:data1" value= (@event.start.strftime('%a %b, %d') +' '+ @event.start.strftime('%I:%M %p') + ' - ' + @event.finish.strftime('%I:%M %p'))
+  meta name="twitter:label2" value="Where"
+  meta name="twitter:data2" value=(@event.location.streetAddress+', '+@event.location.cityState)
