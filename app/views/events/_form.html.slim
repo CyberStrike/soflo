@@ -22,16 +22,17 @@
     .icon-content
       .form-group
         = f.date_select :start, {start_year: Date.today.year}, tabindex: autoTabIndex
+        = f.date_select :finish, {start_year: Date.today.year}, tabindex: autoTabIndex, class: 'hidden'
   // Time
   .icon-group
     .icon
       i.glyphicon.glyphicon-time
     .icon-content
       .form-group
-        = f.time_select :start, {ampm: true, minute_step: 30}, tabindex: autoTabIndex
+        = f.time_select :start, {ignore_date: true, ampm: true, minute_step: 30}, tabindex: autoTabIndex
         | –
         span.break-xs
-        = f.time_select :finish, { ampm: true, minute_step: 30}, tabindex: autoTabIndex
+        = f.time_select :finish, {ignore_date: true, ampm: true, minute_step: 30}, tabindex: autoTabIndex
 
   // Location
   .icon-group

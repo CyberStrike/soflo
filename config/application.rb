@@ -36,7 +36,7 @@ module Soflo
     # }
 
     # Turns off the asset pipleline log
-    config.quiet_assets = false
+    config.quiet_assets = true
 
     config.action_controller.asset_host = Proc.new { |source, request|
       if request

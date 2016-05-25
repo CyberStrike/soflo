@@ -2,7 +2,7 @@
 
   /! Facebook Open Graph
   meta property="og:type" content="event"
-  meta property="og:url" content= url_for([@event, only_path: false])
+  meta property="og:url" content= event_url(@event)
   meta property="og:title" content= @event.title
   meta property="og:description" content= @event.description
 
