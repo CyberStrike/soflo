@@ -2,12 +2,12 @@ require 'rails_helper'
 
 context 'When editing an Event', :type => :feature do
 
-  let!(:mario){create(:user)}
-  let!(:luigi){create(:user)} # second user for testing
-  let!(:mushroom_kingdom) {create(:location)}
-  let!(:mario_party){create(:event, user: mario, location: mushroom_kingdom)}
-  let!(:luigi_party){create(:event, user: luigi, location: mushroom_kingdom)}
-  let!(:event_mock){build(:event)}
+  let!(:mario){ create(:user) }
+  let!(:luigi){ create(:user) } # second user for testing
+  let!(:mushroom_kingdom) { create(:location) }
+  let!(:mario_party){ create(:event, user: mario, location: mushroom_kingdom) }
+  let!(:luigi_party){ create(:event, user: luigi, location: mushroom_kingdom) }
+  let!(:event_mock){ build(:event) }
 
   before :each do |e|
     unless e.metadata[:skip_before]

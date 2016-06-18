@@ -14,19 +14,22 @@ class EventsController < ApplicationController
 
     @display_month = @date.year < Date.current.year ? @date.strftime("%B %Y") : @date.strftime("%B")
 
+    # render json: @events_by_week.first[1], status: :ok if request.format.json?
+
   end
 
   def calendar
     @events = Event.all
-    @events_by_date = @events.group_by &:start_date
+    @events_by_date = @events.group_by(&:start_date)
   end
 
   def show
+    render json: @event, status: :ok if request.format.json?
   end
 
   def new
     @event = Event.new(
-        start:  (DateTime.now + 1.hour).beginning_of_hour,
+        start: (DateTime.now + 1.hour).beginning_of_hour,
         finish: (DateTime.now + 2.hour).beginning_of_hour)
     @location = @event.build_location_event.build_location
 
@@ -52,7 +55,7 @@ class EventsController < ApplicationController
 
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @event }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
       else
         format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
