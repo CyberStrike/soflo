@@ -14,8 +14,6 @@ class EventsController < ApplicationController
 
     @display_month = @date.year < Date.current.year ? @date.strftime("%B %Y") : @date.strftime("%B")
 
-    # render json: @events_by_week.first[1], status: :ok if request.format.json?
-
   end
 
   def calendar
@@ -24,7 +22,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    render json: @event, status: :ok if request.format.json?
   end
 
   def new
