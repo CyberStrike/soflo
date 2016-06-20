@@ -31,8 +31,7 @@ class EventsController < ApplicationController
       url: event_url(@event),
       location: {
         '@type': 'Place',
-        sameAs: 'http://www.hi-dive.com',
-        name: 'The Hi-Dive',
+        name: @event.location.name,
         address: {
           '@type': 'PostalAddress',
           streetAddress: @event.location.streetAddress,
