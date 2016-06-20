@@ -12,7 +12,7 @@
     .icon-content
       h3 = @event.title
   // DateTime
-  .icon-group#Date
+  time.icon-group#Date dateTime=@event.start.iso8601
     .icon
       i.glyphicon.glyphicon-calendar
     .icon-content

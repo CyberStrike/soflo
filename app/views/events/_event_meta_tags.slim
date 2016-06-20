@@ -1,16 +1,16 @@
 = content_for :event_meta_tags do
 
-  /! Facebook Open Graph
+  // Facebook Open Graph
   meta property="og:type" content="event"
   meta property="og:url" content= event_url(@event)
   meta property="og:title" content= @event.title
   meta property="og:description" content= @event.description
 
-  / FB Open Graph wants DateTime in iso8601
+  // FB Open Graph wants DateTime in iso8601
   meta property="og:updated_time" content= @event.updated_at.iso8601
   meta property="og:start_time" content= @event.start.iso8601
 
-  /! Twitter Card
+  // Twitter Card
   meta name="twitter:domain" value= request.host
   meta name="twitter:url" value= root_url
 
@@ -21,3 +21,8 @@
   meta name="twitter:data1" value= (@event.start.strftime('%a %b, %d') +' '+ @event.start.strftime('%I:%M %p') + ' - ' + @event.finish.strftime('%I:%M %p'))
   meta name="twitter:label2" value="Where"
   meta name="twitter:data2" value=(@event.location.streetAddress+', '+@event.location.cityState)
+
+  // Google Rich Snippets
+  //
+  script type="application/ld+json"
+    == @google_event_snippet.to_json

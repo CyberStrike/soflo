@@ -22,6 +22,26 @@ class EventsController < ApplicationController
   end
 
   def show
+    @google_event_snippet = {
+      '@context': 'http://schema.org',
+      '@type': 'Event',
+      name: @event.title,
+      startDate: @event.start.iso8601,
+      endDate: @event.finish.iso8601,
+      url: event_url(@event),
+      location: {
+        '@type': 'Place',
+        sameAs: 'http://www.hi-dive.com',
+        name: 'The Hi-Dive',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: @event.location.streetAddress,
+          addressLocality: @event.location.city,
+          addressRegion: @event.location.state,
+          postalCode: @event.location.zip
+        }
+      }
+    }
   end
 
   def new
