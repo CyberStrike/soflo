@@ -23,6 +23,7 @@ group :development, :test do
   gem 'pry-byebug' # Break in console
   gem 'pry-rails'
   gem 'awesome_print'
+  gem 'webdrivers'
 end
 
 group :development do
