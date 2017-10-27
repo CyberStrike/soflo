@@ -9,6 +9,9 @@ Smart Event Calendar for the Miami Tech Community
 ### Dev Setup
 
 ---
+Uses Ruby 2.3.0
+
+Basic Rails install
 
 ```Shell
 rake db:seed
@@ -22,6 +25,12 @@ So only feature testing. Because why bother with anything else if the
 views aren't broken and the users can use the app successfully.
  
 https://www.relishapp.com/rspec/rspec-rails/v/3-4/docs/feature-specs/feature-spec
+
+Chrome is required for testing. 
+If you get an error try installing ChromeDriver.
+```
+brew install chromedriver
+```
 
 #### Testing Style Guide
 
