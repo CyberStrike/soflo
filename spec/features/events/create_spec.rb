@@ -7,7 +7,7 @@ context 'When creating an Event', :type => :feature, js: true do
 
   before :each do
     login_as user
-    page.visit '/'
+    visit '/'
     click_on 'Add Event'
   end
 
