@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-context 'When creating an Event', :type => :feature do
+context 'When creating an Event', :type => :feature, js: true do
 
   let!(:user){  create(:user)}
   let!(:event){ build(:event, user: user)}
 
   before :each do
     login_as user
-    visit '/'
+    page.visit '/'
     click_on 'Add Event'
   end
 
