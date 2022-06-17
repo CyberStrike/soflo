@@ -71,6 +71,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    concurrent-ruby (1.1.10)
     daemons (1.2.3)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
@@ -95,7 +96,8 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hike (1.2.3)
-    i18n (0.7.0)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
